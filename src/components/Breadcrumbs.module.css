@@ -1,0 +1,40 @@
+.nav {
+  margin-bottom: 1.25rem;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list li:not(:last-child)::after {
+  content: "/";
+  color: #9aa7b3;
+}
+
+.list a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.list a:hover,
+.list a:focus-visible {
+  text-decoration: underline;
+}
+
+.list span[aria-current="page"] {
+  color: var(--color-ink);
+  font-weight: 600;
+}

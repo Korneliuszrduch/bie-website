@@ -1,0 +1,76 @@
+.footer {
+  margin-top: auto;
+  background: var(--color-ink);
+  color: #d7e0e8;
+}
+
+.inner {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 2.5rem 1.25rem 1.5rem;
+}
+
+.heading {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.text {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #b7c4cf;
+}
+
+.text a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.text a:hover,
+.text a:focus-visible {
+  color: var(--color-accent);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.list a {
+  color: #c5d0d9;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.list a:hover,
+.list a:focus-visible {
+  color: var(--color-accent);
+}
+
+.bottom {
+  border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 1rem 1.25rem 1.5rem;
+  font-size: 0.8rem;
+  color: #8fa0ae;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.bottom p {
+  margin: 0;
+}
+
+.note {
+  color: #7a8b99;
+}

@@ -1,0 +1,134 @@
+.main {
+  flex: 1;
+  padding: 1.5rem 0 3rem;
+}
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.header {
+  margin-bottom: 1.75rem;
+  max-width: 48rem;
+}
+
+.h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.section {
+  margin-bottom: 2rem;
+  max-width: 48rem;
+}
+
+.section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.section p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.4rem;
+  color: var(--color-muted);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+  color: var(--color-muted);
+}
+
+.note {
+  margin-top: 0.85rem !important;
+  padding: 0.75rem 0.9rem;
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  font-size: 0.92rem;
+}
+
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chips li {
+  padding: 0.4rem 0.7rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.related {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.related a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.faq {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.faq details {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.4rem;
+  padding: 0.85rem 1rem;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.faq p {
+  margin: 0.65rem 0 0;
+}
+
+.contactLink {
+  margin: 1.5rem 0 0;
+}
+
+.contactLink a {
+  color: var(--color-primary);
+  font-weight: 700;
+}

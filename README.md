@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bezpieczne Instalacje Elektryczne — strona Next.js
 
-## Getting Started
+Nowa strona firmowa (App Router, TypeScript, SSG).  
+Środowisko testowe: `https://nowa.bezpieczneinstalacjeelektryczne.pl`  
+Obecny WordPress na domenie głównej **nie jest modyfikowany**.
 
-First, run the development server:
+## Etap 1 (obecny zakres)
+
+- konfiguracja Next.js 16 + Tailwind + TypeScript
+- layout, nawigacja, routing wszystkich zaplanowanych URL
+- blokada indeksowania staging (`SITE_ENV=staging`)
+- meta robots, `X-Robots-Tag`, `robots.txt`, pusta sitemap na staging
+- Basic Auth (middleware) — włączane zmiennymi env
+- bezpieczna blokada: host `nowa.*` zawsze traktowany jako staging
+- bazowy design mobile-first
+
+## Uruchomienie lokalne
 
 ```bash
+cd c:\dev\bie-website
+cp .env.example .env.local   # jeśli jeszcze nie ma
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otwórz: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+W `.env.local` domyślnie `BASIC_AUTH_ENABLED=false` (wygodny lokalny dev).  
+Na Vercel ustaw `BASIC_AUTH_ENABLED=true` oraz hasło.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Smoke SEO (staging)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run smoke:seo
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+(Skrypt sprawdza robots.txt, nagłówek X-Robots-Tag i meta — wymaga działającego serwera.)
 
-## Deploy on Vercel
+## Zmienne środowiskowe
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Zobacz `.env.example`. Sekrety (`CRM_API_KEY`, hasło Basic Auth) tylko w panelu hostingu / `.env.local` — nie w git.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Kolejne etapy
+
+2. Treści: home (pełna), usługi, lokalizacje, kontakt  
+3. Realizacje, poradnik MDX, formularz + `/api/leads`  
+4. Testy, `docs/staging-deployment.md`, `docs/migration-plan.md`
