@@ -86,6 +86,27 @@ export function getCompanyConfig() {
       "mgr inż. elektryk Korneliusz Rduch",
     ),
     serviceArea: readEnv("NEXT_PUBLIC_SERVICE_AREA", "Śląsk"),
+    googleReviewUrl: readEnv(
+      "NEXT_PUBLIC_GOOGLE_REVIEW_URL",
+      "https://g.page/r/CdxehSpgWU54EAE/review",
+    ),
+    /** Wizytówka / lista opinii (bez /review = podgląd, nie formularz). */
+    googleReviewsUrl: readEnv(
+      "NEXT_PUBLIC_GOOGLE_REVIEWS_URL",
+      "https://g.page/r/CdxehSpgWU54EAE",
+    ),
+    credentialsPdfUrl: readEnv(
+      "NEXT_PUBLIC_CREDENTIALS_PDF_URL",
+      "https://bezpieczneinstalacjeelektryczne.pl/wp-content/uploads/2025/07/D1_E1.pdf",
+    ),
+    calibrationPdfUrl: readEnv(
+      "NEXT_PUBLIC_CALIBRATION_PDF_URL",
+      "https://bezpieczneinstalacjeelektryczne.pl/wp-content/uploads/2026/04/swiadectwo_wzorcowania.pdf",
+    ),
+    facebookPostUrl: readEnv(
+      "NEXT_PUBLIC_FACEBOOK_POST_URL",
+      "https://www.facebook.com/photo/?fbid=122145789008779573&set=a.122145789620779573",
+    ),
   };
 }
 
