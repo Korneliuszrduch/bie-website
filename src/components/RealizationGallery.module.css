@@ -173,6 +173,10 @@
   color: var(--color-muted);
 }
 
+.caseMulti {
+  grid-template-columns: 1fr;
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
@@ -191,7 +195,7 @@
     gap: 1rem;
   }
 
-  .case {
+  .case:not(.caseMulti) {
     grid-template-columns: minmax(14rem, 18rem) 1fr;
     align-items: start;
     gap: 1.35rem;

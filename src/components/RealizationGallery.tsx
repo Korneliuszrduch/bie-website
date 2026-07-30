@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CaseImageSlider } from "@/components/CaseImageSlider";
 import {
   photoHasCaseCopy,
+  type RealizationPhoto,
   type RealizationProject,
 } from "@/content/realizations";
 import styles from "./RealizationGallery.module.css";
@@ -17,6 +19,49 @@ type Props = {
    */
   layout?: "grid" | "cases";
 };
+
+function caseImages(photo: RealizationPhoto) {
+  return [
+    { src: photo.src, alt: photo.alt },
+    ...(photo.gallery ?? []),
+  ];
+}
+
+function CaseCopy({ photo }: { photo: RealizationPhoto }) {
+  const hasCopy = photoHasCaseCopy(photo);
+  return (
+    <div className={styles.caseBody}>
+      <h3 className={styles.caseLocation}>{photo.location}</h3>
+      {hasCopy ? (
+        <dl className={styles.caseDl}>
+          {photo.problem.trim() ? (
+            <>
+              <dt>Problem</dt>
+              <dd>{photo.problem}</dd>
+            </>
+          ) : null}
+          {photo.solution.trim() ? (
+            <>
+              <dt>Rozwiązanie</dt>
+              <dd>{photo.solution}</dd>
+            </>
+          ) : null}
+          {photo.result?.trim() ? (
+            <>
+              <dt>Efekt</dt>
+              <dd>{photo.result}</dd>
+            </>
+          ) : null}
+        </dl>
+      ) : (
+        <p className={styles.casePending}>
+          Opis realizacji (problem / rozwiązanie / efekt) uzupełnimy po zebraniu
+          szczegółów od klienta.
+        </p>
+      )}
+    </div>
+  );
+}
 
 export function RealizationGallery({
   project,
@@ -55,54 +100,24 @@ export function RealizationGallery({
       {layout === "cases" ? (
         <ul className={styles.cases}>
           {project.photos.map((photo) => {
-            const hasCopy = photoHasCaseCopy(photo);
+            const images = caseImages(photo);
+            const multi = images.length > 1;
             return (
-              <li key={photo.src} className={styles.case}>
-                <a
-                  href={photo.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.caseMedia}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    width={800}
-                    height={600}
-                    sizes="(max-width: 720px) 100vw, 320px"
-                    className={styles.img}
-                  />
-                </a>
-                <div className={styles.caseBody}>
-                  <h3 className={styles.caseLocation}>{photo.location}</h3>
-                  {hasCopy ? (
-                    <dl className={styles.caseDl}>
-                      {photo.problem.trim() ? (
-                        <>
-                          <dt>Problem</dt>
-                          <dd>{photo.problem}</dd>
-                        </>
-                      ) : null}
-                      {photo.solution.trim() ? (
-                        <>
-                          <dt>Rozwiązanie</dt>
-                          <dd>{photo.solution}</dd>
-                        </>
-                      ) : null}
-                      {photo.result?.trim() ? (
-                        <>
-                          <dt>Efekt</dt>
-                          <dd>{photo.result}</dd>
-                        </>
-                      ) : null}
-                    </dl>
-                  ) : (
-                    <p className={styles.casePending}>
-                      Opis realizacji (problem / rozwiązanie / efekt) uzupełnimy
-                      po zebraniu szczegółów od klienta.
-                    </p>
-                  )}
-                </div>
+              <li
+                key={photo.src}
+                className={multi ? `${styles.case} ${styles.caseMulti}` : styles.case}
+              >
+                {multi ? (
+                  <>
+                    <CaseCopy photo={photo} />
+                    <CaseImageSlider images={images} label={photo.location} />
+                  </>
+                ) : (
+                  <>
+                    <CaseImageSlider images={images} label={photo.location} />
+                    <CaseCopy photo={photo} />
+                  </>
+                )}
               </li>
             );
           })}

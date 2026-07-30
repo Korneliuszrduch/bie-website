@@ -53,6 +53,13 @@ const LOC: Record<string, Loc> = {
     h1: "Przeglądy instalacji elektrycznych w Sośnicowicach",
     indexable: true,
   },
+  dankowice: {
+    slug: "dankowice",
+    name: "Dankowice",
+    locative: "Dankowicach",
+    h1: "Przeglądy instalacji elektrycznych w Dankowicach",
+    indexable: true,
+  },
   zabrze: {
     slug: "zabrze",
     name: "Zabrze",

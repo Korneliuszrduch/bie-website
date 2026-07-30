@@ -68,10 +68,11 @@ export function getCompanyConfig() {
       "NEXT_PUBLIC_COMPANY_PHONE_DISPLAY",
       "730 222 105",
     ),
-    phoneSecondary: readEnv("NEXT_PUBLIC_COMPANY_PHONE_SECONDARY", "503311790"),
+    /** Optional second number — leave empty to show only the primary phone. */
+    phoneSecondary: readEnv("NEXT_PUBLIC_COMPANY_PHONE_SECONDARY", ""),
     phoneSecondaryDisplay: readEnv(
       "NEXT_PUBLIC_COMPANY_PHONE_SECONDARY_DISPLAY",
-      "503 311 790",
+      "",
     ),
     email: readEnv(
       "NEXT_PUBLIC_COMPANY_EMAIL",

@@ -124,6 +124,12 @@ export const LOCATIONS: LocationSummary[] = [
     hasUniqueContent: true,
   },
   {
+    slug: "dankowice",
+    name: "Dankowice",
+    href: "/lokalizacje/dankowice",
+    hasUniqueContent: true,
+  },
+  {
     slug: "tychy",
     name: "Tychy",
     href: "/lokalizacje/tychy",

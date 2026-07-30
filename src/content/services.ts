@@ -235,7 +235,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ],
     process: [
       "Ustalenie, czy chodzi o instalację budynku, maszyny, czy oba.",
-      "Wycena (instalacja — indywidualnie; maszyny — wg typu urządzenia).",
+      "Wycena (instalacja i maszyny — indywidualnie, wg zakresu).",
       "Realizacja na obiekcie.",
       "Protokoły i oznaczenia.",
     ],
@@ -254,7 +254,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       {
         question: "Ile kosztuje przegląd maszyny?",
         answer:
-          "Wg oferty na przegląd maszyn: 70 zł netto za prostą maszynę (np. kompresor, mieszadło, elektronarzędzie) oraz 150 zł netto za urządzenie zaawansowane z własną rozdzielnią.",
+          "Cena jest indywidualna — zależy od typu urządzenia i zakresu. Proste maszyny wyceniamy inaczej niż urządzenia z własną rozdzielnią. Napisz lub zadzwoń, przygotuję ofertę.",
       },
       {
         question: "Czy przegląd instalacji firmowej ma stałą cenę?",
@@ -271,7 +271,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
     ctaText:
       "Napisz, czy dotyczy instalacji budynku czy maszyn — przygotuję ofertę.",
     pricingNote:
-      "Przegląd maszyn: 70 zł netto (prosta maszyna) / 150 zł netto (urządzenie z własną rozdzielnią). Przegląd instalacji budynku — wycena indywidualna.",
+      "Ceny przeglądów firmowych i maszyn ustalane są indywidualnie w ofercie. Na stronie nie publikujemy cennika.",
   },
 
   "kompensacja-mocy-biernej": {

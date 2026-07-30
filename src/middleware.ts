@@ -56,10 +56,19 @@ function withStagingHeaders(response: NextResponse): NextResponse {
 export function middleware(request: NextRequest) {
   const staging = isStagingRequest(request);
   const { pathname } = request.nextUrl;
+  const pathDecoded = decodeURIComponent(pathname).toLowerCase();
 
   // Always attach noindex headers on staging (including robots.txt / sitemap).
   const respond = (res: NextResponse) =>
     staging ? withStagingHeaders(res) : res;
+
+  // Never serve private source materials (signed protocols, drafts) from /public.
+  if (
+    pathDecoded.startsWith("/do wykorzystania") ||
+    pathDecoded.endsWith(".pdf")
+  ) {
+    return respond(new NextResponse("Not Found", { status: 404 }));
+  }
 
   if (staging && basicAuthEnabled()) {
     const bypassAuth =

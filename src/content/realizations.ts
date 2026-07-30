@@ -1,3 +1,8 @@
+export type RealizationGalleryImage = {
+  src: string;
+  alt: string;
+};
+
 export type RealizationPhoto = {
   src: string;
   alt: string;
@@ -8,6 +13,8 @@ export type RealizationPhoto = {
   problem: string;
   solution: string;
   result?: string;
+  /** Extra photos for the same case (one description, many images) */
+  gallery?: RealizationGalleryImage[];
 };
 
 export type RealizationProject = {
@@ -30,6 +37,7 @@ export const LOCATION_REALIZATION_KEYS: Record<string, string[]> = {
   sosnowiec: ["sosnowiec"],
   sosnicowice: ["sosnicowice"],
   gliwice: ["sosnicowice"],
+  dankowice: ["dankowice"],
 };
 
 /**
@@ -46,11 +54,11 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
     photos: [
       {
         src: "/images/realizacje/kompensacja/kompensator_panele_zabrze_.jpg",
-        alt: "Kompensator mocy biernej przy ogrzewaniu panelami — Zabrze",
-        location: "Zabrze (panele grzewcze)",
+        alt: "Kompensator mocy biernej przy panelach podłogowych — Zabrze",
+        location: "Zabrze (panele podłogowe)",
         locationKey: "zabrze",
         problem:
-          "Obiekt z panelami grzewczymi podłogowymi — klient płacił ok. 800 zł miesięcznie za energię bierną.",
+          "Obiekt z panelami podłogowymi — klient płacił ok. 800 zł miesięcznie za energię bierną.",
         solution:
           "Po analizie faktury dobraliśmy i zamontowaliśmy kompensator 10 kvar.",
         result:
@@ -146,6 +154,86 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
     serviceHref: "/uslugi/przeglady-instalacji-elektrycznych",
     serviceLabel: "Oferta: przeglądy instalacji elektrycznych",
     photos: [
+      {
+        src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p15_01.jpg",
+        alt: "Przegląd 5-letni instalacji — rozdzielnica, Dankowice",
+        location: "Dankowice",
+        locationKey: "dankowice",
+        problem:
+          "5-letni przegląd instalacji w obiekcie przemysłowo-biurowym (hala produkcyjna, środowisko zapylone, fotowoltaika). Stwierdzono m.in.: brak ciągłości przewodu PE lub zawyżone wartości w części urządzeń, obniżoną rezystancję izolacji na obwodach RCD, brak RCD przy części wyłączników nadprądowych, brak klapek ochronnych w gniazdach w zapyleniu oraz rozbieżność układu sieci (zasilanie TT / instalacja odbiorcza TN-C-S).",
+        solution:
+          "Wykonano okresową kontrolę z oględzinami i pomiarami (izolacja, ciągłość PE, RCD, uziemienie, impedancja pętli zwarcia) oraz sporządzono protokół zgodnie z art. 62 Prawa budowlanego.",
+        result:
+          "Nieprawidłowości zostały udokumentowane w protokole — instalacja nie spełnia w pełni wymagań bezpieczeństwa i wymaga modernizacji oraz usunięcia usterek.",
+        gallery: [
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p12_01.jpg",
+            alt: "Rozdzielnica podczas przeglądu 5-letniego — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p11_01.jpg",
+            alt: "Brak RCD przy wyłącznikach nadprądowych — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p16_01.jpg",
+            alt: "Pomiary / rozdzielnica RCD — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p14_02.jpg",
+            alt: "Obniżona izolacja na obwodzie RCD — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p12_02.jpg",
+            alt: "Gniazda bez klapek ochronnych w zapyleniu — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p09_02.jpg",
+            alt: "Kontrola ciągłości PE — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p04_01.jpg",
+            alt: "Dokumentacja usterek PE — Dankowice",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p03_01.jpg",
+            alt: "Maszyny produkcyjne objęte przeglądem instalacji — Dankowice",
+          },
+        ],
+      },
+      {
+        src: "/images/realizacje/przeglady_elektryczne/jedlina_przeglad.jpg",
+        alt: "Przegląd elektryczny — Jedlina, dokumentacja usterek",
+        location: "Jedlina",
+        locationKey: "jedlina",
+        problem:
+          "Przegląd elektryczny wykazał m.in.: zawilgocenia i wodę w gniazdach, zbyt duże zabezpieczenia względem przekrojów przewodów, zabrudzony wlot falownika od strony wentylatora oraz niesprawne przyciski awaryjne.",
+        solution:
+          "Wszystkie niezgodności zostały udokumentowane w protokole przeglądu wraz ze zdjęciami z obiektu.",
+        result:
+          "Klient otrzymał wykaz usterek do naprawy (wilgoć w instalacji, zabezpieczenia, falownik, przyciski STOP).",
+        gallery: [
+          {
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_ozdzielnica.jpg",
+            alt: "Rozdzielnica — Jedlina, przegląd elektryczny",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_gn3f_wilgoc.jpg",
+            alt: "Zawilgocenie przy instalacji — Jedlina",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_gniazdo.jpg",
+            alt: "Gniazdo z wilgocią / wodą — Jedlina",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_falownik.jpg",
+            alt: "Falownik — zabrudzony wlot od wentylatora, Jedlina",
+          },
+          {
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_przycisk.jpg",
+            alt: "Niesprawny przycisk awaryjny — Jedlina",
+          },
+        ],
+      },
       {
         src: "/images/realizacje/przeglady_elektryczne/sosnicowice_przeglad_elektryczny_rozdzielnia.jpg",
         alt: "Przegląd instalacji elektrycznej domu — Sośnicowice, rozdzielnia",
