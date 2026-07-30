@@ -85,26 +85,26 @@ const STATS = [
   {
     value: "150+",
     label: "przeglądów instalacji z protokołem",
-    image: "/images/stats/stat-przeglady.png",
-    imageAlt: "Grafika: rozdzielnica elektryczna",
+    image: "/images/stats/stat-przeglady-v2.png",
+    imageAlt: "Rozdzielnica po przeglądzie instalacji elektrycznej",
   },
   {
     value: "5+",
     label: "lat doświadczenia na Śląsku",
-    image: "/images/stats/stat-doswiadczenie.png",
-    imageAlt: "Grafika: doświadczenie w terenie",
+    image: "/images/stats/stat-doswiadczenie-v2.png",
+    imageAlt: "Samochód serwisowy na Śląsku",
   },
   {
     value: "Domy i firmy",
     label: "ten sam zakres pomiarów i dokumentacji",
-    image: "/images/stats/stat-domy-firmy.png",
-    imageAlt: "Grafika: dom i budynek firmowy",
+    image: "/images/stats/stat-domy-firmy-v2.png",
+    imageAlt: "Dom jednorodzinny i kompensator w firmie",
   },
   {
     value: "Protokół",
     label: "pod ubezpieczyciela i przepisy (art. 62)",
-    image: "/images/stats/stat-protokol.png",
-    imageAlt: "Grafika: protokół z przeglądu",
+    image: "/images/stats/stat-protokol-v2.png",
+    imageAlt: "Protokół z przeglądu i miernik instalacji",
   },
 ];
 
