@@ -1,0 +1,46 @@
+.wrap {
+  margin-top: 2rem;
+}
+
+.head {
+  margin-bottom: 0.85rem;
+}
+
+.head h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.25rem;
+}
+
+.head p {
+  margin: 0 0 0.45rem;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus-visible {
+  text-decoration: underline;
+}
+
+.frame {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: #e8eef3;
+  aspect-ratio: 16 / 10;
+  min-height: 280px;
+}
+
+.frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}

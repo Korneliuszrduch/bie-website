@@ -89,8 +89,7 @@ export function Footer() {
           {company.nip ? ` · NIP ${company.nip}` : ""}
         </p>
         <p className={styles.note}>
-          Wersja testowa na poddomenie — treść i realizacje demo nie są ofertą
-          finalną.
+          Wersja testowa na poddomenie — treść nie jest jeszcze ofertą finalną.
         </p>
       </div>
     </footer>

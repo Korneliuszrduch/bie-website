@@ -1,0 +1,120 @@
+.card {
+  background: #fff;
+  color: var(--color-ink);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.35rem 1.4rem;
+  box-shadow: 0 12px 40px color-mix(in srgb, #000 22%, transparent);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.compact {
+  padding: 1.1rem 1.15rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.hint {
+  margin: -0.25rem 0 0.25rem;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  font-weight: 400;
+  background: #fbfcfd;
+  color: var(--color-ink);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 70%, transparent);
+  border-color: var(--color-accent);
+  background: #fff;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.check {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.check a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.check input {
+  margin-top: 0.15rem;
+}
+
+.submit {
+  margin-top: 0.25rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: var(--color-accent);
+  color: #1a1400;
+  font: inherit;
+  font-weight: 800;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+}
+
+.submit:hover,
+.submit:focus-visible {
+  filter: brightness(0.97);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.error {
+  color: #b42318;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.success {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

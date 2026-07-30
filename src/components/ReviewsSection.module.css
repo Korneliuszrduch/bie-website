@@ -1,0 +1,144 @@
+.section {
+  padding: 3rem 0;
+}
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.head {
+  margin-bottom: 1.35rem;
+  max-width: 40rem;
+}
+
+.head h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+}
+
+.head p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.summary {
+  margin-top: 0.85rem !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.65rem;
+  font-size: 0.95rem;
+  color: var(--color-ink) !important;
+  font-weight: 600;
+}
+
+.summaryScore {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.3rem;
+  background: #fff7e0;
+  color: #8a6500;
+  font-weight: 800;
+}
+
+.verifyLink {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.verifyLink:hover,
+.verifyLink:focus-visible {
+  text-decoration: underline;
+}
+
+.grid {
+  list-style: none;
+  margin: 0 0 1.35rem;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.45rem;
+  padding: 1.15rem 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.stars {
+  margin: 0;
+  color: #e6a100;
+  letter-spacing: 0.06em;
+  font-size: 1rem;
+}
+
+.starsEmpty {
+  color: #d5dbe3;
+}
+
+.text {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.empty {
+  margin: 0 0 1.15rem;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px dashed var(--color-border);
+  border-radius: 0.45rem;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.googleBtn,
+.verifyBtn,
+.fbBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.05rem;
+  border-radius: 0.35rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.googleBtn {
+  background: #1a73e8;
+  color: #fff;
+}
+
+.verifyBtn {
+  background: #fff;
+  color: #1a73e8;
+  border: 1px solid #1a73e8;
+}
+
+.fbBtn {
+  background: #4267b2;
+  color: #fff;
+}

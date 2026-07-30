@@ -10,7 +10,7 @@ type Props = {
 
 export function CtaBand({
   title = "Potrzebujesz przeglądu lub wyceny?",
-  text = "Opisz obiekt lub wyślij fakturę do analizy — oddzwonimy z konkretną propozycją.",
+  text = "Wypełnij formularz albo zadzwoń — oddzwonimy z propozycją terminu.",
 }: Props) {
   const company = getCompanyConfig();
   const telHref = `tel:+48${company.phone.replace(/\s/g, "")}`;
@@ -22,11 +22,8 @@ export function CtaBand({
         <p className={styles.text}>{text}</p>
       </div>
       <div className={styles.actions}>
-        <Link className={styles.primary} href={CTA_LINKS.review.href}>
+        <Link className={styles.primary} href="/#formularz">
           {CTA_LINKS.review.label}
-        </Link>
-        <Link className={styles.secondary} href={CTA_LINKS.quote.href}>
-          {CTA_LINKS.quote.label}
         </Link>
         <a className={styles.phone} href={telHref}>
           Zadzwoń: {company.phoneDisplay}
