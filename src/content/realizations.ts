@@ -172,11 +172,11 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
         location: "Kozy",
         locationKey: "kozy",
         problem:
-          "Producent choinek sztucznych budował nową halę z maszynami. Wiedzieli, że po przeniesieniu urządzeń w nowym punkcie pojawią się opłaty za moc bierną i chcieli mieć to zabezpieczone od startu.",
+          "Producent wytworów z tworzyw sztucznych budował nową halę z maszynami. Wiedzieli, że po przeniesieniu urządzeń w nowym punkcie pojawią się opłaty za moc bierną i chcieli mieć to zabezpieczone od startu.",
         solution:
           "Wykonaliśmy pomiary i zamontowaliśmy kompensator 50 kvar. Po uruchomieniu dostrajaliśmy parametry w konfiguracji.",
         result:
-          "Przy dużych mocach pojawiło się chwilowe niedokompensowanie (ok. 80 zł miesięcznie) — start nowych maszyn się opóźnił. Po korekcie konfiguracji moc bierną wyeliminowaliśmy w 100%.",
+          "Pomimo mocy biernej pojemnościowej i sporej mocy biernej indukcyjnej zredukowaliśmy moc bierną do zera dzięki kompensatorowi SVG.",
       },
     ],
   },
