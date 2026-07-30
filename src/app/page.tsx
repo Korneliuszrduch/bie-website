@@ -4,6 +4,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { LOCATIONS } from "@/content/site";
+import { REALIZATION_PROJECTS } from "@/content/realizations";
 import { getAllServices } from "@/content/services";
 import { getCompanyConfig } from "@/lib/env";
 import { buildPageMetadata } from "@/lib/seo";
@@ -38,6 +39,46 @@ const HOME_FAQ = [
     q: "Czy usuwamy awarie i braki wykryte podczas przeglądu?",
     a: "Tak, po uzgodnieniu. To usługi dodatkowo płatne, ale często jest to tańsze niż wzywanie kolejnego fachowca — znamy już instalację z przeglądu i protokołu.",
   },
+  {
+    q: "Ile trwa przegląd instalacji elektrycznej?",
+    a: "Czas przeglądu zależy od wielkości i rodzaju obiektu. W przypadku domu jednorodzinnego kontrola najczęściej trwa od 2 do 4 godzin. Po zakończeniu pomiarów przygotowujemy protokół z wynikami oraz zaleceniami.",
+  },
+  {
+    q: "Ile kosztuje przegląd instalacji elektrycznej?",
+    a: "Cena zależy od wielkości obiektu, liczby rozdzielnic, obwodów i punktów pomiarowych. Przed rozpoczęciem prac przygotowujemy bezpłatną wycenę, dlatego klient zna koszt usługi z wyprzedzeniem.",
+  },
+  {
+    q: "Czy po przeglądzie otrzymam protokół?",
+    a: "Tak. Każdy przegląd kończy się przygotowaniem protokołu z wynikami pomiarów, opisem stanu instalacji oraz wykazem ewentualnych usterek i zaleceń.",
+  },
+  {
+    q: "Jak często należy wykonywać przegląd instalacji elektrycznej?",
+    a: "W większości budynków okresową kontrolę instalacji elektrycznej wykonuje się co najmniej raz na 5 lat. W niektórych obiektach, szczególnie narażonych na trudne warunki środowiskowe, kontrole mogą być wymagane częściej.",
+  },
+  {
+    q: "Czy przegląd instalacji elektrycznej jest obowiązkowy?",
+    a: "Tak. Obowiązek okresowej kontroli instalacji elektrycznej wynika z art. 62 ust. 1 pkt 2 ustawy Prawo budowlane. Regularne przeglądy pomagają również wykrywać usterki, zanim doprowadzą do awarii lub zagrożenia.",
+  },
+  {
+    q: "Czy wykonujecie przeglądy dla firm i zakładów produkcyjnych?",
+    a: "Tak. Wykonujemy przeglądy w domach, biurach, wspólnotach mieszkaniowych, magazynach, halach produkcyjnych, zakładach przemysłowych oraz innych obiektach komercyjnych.",
+  },
+  {
+    q: "Czy podczas przeglądu trzeba wyłączyć prąd?",
+    a: "Przy części pomiarów może być konieczne krótkotrwałe wyłączenie zasilania. Zakres i czas przerw ustalamy wcześniej z klientem i staramy się ograniczyć je do niezbędnego minimum.",
+  },
+  {
+    q: "Czy można zamówić tylko pomiary elektryczne?",
+    a: "Tak. Wykonujemy również wybrane pomiary ochronne, pomiary do odbioru instalacji, pomiary wymagane przez ubezpieczyciela oraz kontrole wskazanych obwodów lub urządzeń.",
+  },
+  {
+    q: "Czy pomiary są wykonywane zgodnie z obowiązującymi przepisami?",
+    a: "Tak. Pomiary wykonujemy zgodnie z obowiązującymi przepisami i odpowiednimi normami, przy użyciu profesjonalnych mierników z aktualnymi świadectwami wzorcowania.",
+  },
+  {
+    q: "Na jakim obszarze działacie?",
+    a: "Obsługujemy klientów na terenie województwa śląskiego oraz w okolicznych miejscowościach. Dokładny termin i koszt dojazdu ustalamy podczas wyceny.",
+  },
 ];
 
 const STATS = [
@@ -58,6 +99,40 @@ const STATS = [
     label: "pod ubezpieczyciela i przepisy (art. 62)",
   },
 ];
+
+/** Wybrane case’y na home: po 1 z kluczowych kategorii, max 6. */
+const HOME_REALIZATIONS = (() => {
+  const picks: {
+    src: string;
+    alt: string;
+    location: string;
+    href: string;
+  }[] = [];
+  const preferredKeys = [
+    "katowice",
+    "dankowice",
+    "zabrze",
+    "sosnowiec",
+    "sosnicowice",
+    "pszczyna",
+  ];
+  for (const key of preferredKeys) {
+    for (const project of REALIZATION_PROJECTS) {
+      const photo = project.photos.find((p) => p.locationKey === key);
+      if (!photo) continue;
+      if (picks.some((p) => p.src === photo.src)) continue;
+      picks.push({
+        src: photo.src,
+        alt: photo.alt,
+        location: photo.location,
+        href: `/realizacje/${project.slug}?foto=${encodeURIComponent(photo.src)}`,
+      });
+      break;
+    }
+    if (picks.length >= 6) break;
+  }
+  return picks;
+})();
 
 const PROCESS = [
   {
@@ -169,6 +244,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className={styles.section} aria-labelledby="home-realizations">
+        <div className={styles.container}>
+          <div className={styles.sectionHead}>
+            <h2 id="home-realizations">Realizacje</h2>
+            <p>
+              Wybrane prace z protokołem i pomiarami — kliknij zdjęcie, żeby
+              zobaczyć opis case’u.
+            </p>
+          </div>
+          <ul className={styles.realizationsGrid}>
+            {HOME_REALIZATIONS.map((item) => (
+              <li key={item.src}>
+                <Link href={item.href} className={styles.realizationCard}>
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={640}
+                    height={480}
+                    sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                    className={styles.realizationImg}
+                  />
+                  <span className={styles.realizationLoc}>{item.location}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.more}>
+            <Link href="/realizacje">Wszystkie realizacje</Link>
+          </p>
+        </div>
+      </section>
+
+      <ReviewsSection />
+
       <section className={styles.section} aria-labelledby="services">
         <div className={styles.container}>
           <div className={styles.sectionHead}>
@@ -258,8 +367,6 @@ export default function HomePage() {
           </ul>
         </div>
       </section>
-
-      <ReviewsSection />
 
       <section className={styles.sectionAlt} aria-labelledby="area">
         <div className={styles.container}>

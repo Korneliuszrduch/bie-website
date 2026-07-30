@@ -98,7 +98,7 @@ export function getCompanyConfig() {
     ),
     credentialsPdfUrl: readEnv(
       "NEXT_PUBLIC_CREDENTIALS_PDF_URL",
-      "https://bezpieczneinstalacjeelektryczne.pl/wp-content/uploads/2025/07/D1_E1.pdf",
+      "/images/uprawnienia/uprawnienia-elektryczne-d1-e1.pdf",
     ),
     calibrationPdfUrl: readEnv(
       "NEXT_PUBLIC_CALIBRATION_PDF_URL",

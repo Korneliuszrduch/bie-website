@@ -18,6 +18,24 @@ export const GOOGLE_RATING_SUMMARY = {
 
 export const REVIEWS: Review[] = [
   {
+    author: "Marcelina Hörlin",
+    rating: 5,
+    text: "Pan Korneliusz jest fachowcem godnym polecenia. Przyjechał na czas, wykonał usługę profesjonalnie. Cena również adekwatna. Polecam serdecznie",
+    sourceLabel: "Opinia z Google",
+  },
+  {
+    author: "Paweł Maruszczyk",
+    rating: 5,
+    text: "Serdecznie polecam. Przegląd instalacji w moim domu został wykonany bardzo dokładnie i bez ściemy. Wszystko odbyło się o zaplanowanym czasie i w miłej atmosferze.",
+    sourceLabel: "Opinia z Google",
+  },
+  {
+    author: "Artur",
+    rating: 5,
+    text: "Świetna robota, sprawny kontakt, raport na drugi dzień po wykonaniu usługi. Przegląd staranny, z wyjaśnianiem wykonywanych czynności. Przystępna cena. Znalezione usterki w instalacji wykonywane od razu. Polecam",
+    sourceLabel: "Opinia z Google",
+  },
+  {
     author: "Małgorzata Kamola",
     rating: 5,
     text: "Przegląd instalacji elektrycznej wykonany profesjonalnie. Wszystkie wykryte usterki zostały usunięte w trakcie przeglądu. Polecam serdecznie",
@@ -36,12 +54,6 @@ export const REVIEWS: Review[] = [
     sourceLabel: "Opinia z Google",
   },
   {
-    author: "Paweł Maruszczyk",
-    rating: 5,
-    text: "Serdecznie polecam. Przegląd instalacji w moim domu został wykonany bardzo dokładnie i bez ściemy. Wszystko odbyło się o zaplanowanym czasie i w miłej atmosferze.",
-    sourceLabel: "Opinia z Google",
-  },
-  {
     author: "Adrian Swierkowski",
     rating: 5,
     text: "Uczciwy fachowiec, polecam w 100%",
@@ -57,18 +69,6 @@ export const REVIEWS: Review[] = [
     author: "Łukasz Grochowski",
     rating: 5,
     text: "Pełen profesjonalizm. Super podejście do klienta. Zdecydowanie polecam",
-    sourceLabel: "Opinia z Google",
-  },
-  {
-    author: "Artur",
-    rating: 5,
-    text: "Świetna robota, sprawny kontakt, raport na drugi dzień po wykonaniu usługi. Przegląd staranny, z wyjaśnianiem wykonywanych czynności. Przystępna cena. Znalezione usterki w instalacji wykonywane od razu. Polecam",
-    sourceLabel: "Opinia z Google",
-  },
-  {
-    author: "Marcelina Hörlin",
-    rating: 5,
-    text: "Pan Korneliusz jest fachowcem godnym polecenia. Przyjechał na czas, wykonał usługę profesjonalnie. Cena również adekwatna. Polecam serdecznie",
     sourceLabel: "Opinia z Google",
   },
 ];

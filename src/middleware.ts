@@ -63,9 +63,11 @@ export function middleware(request: NextRequest) {
     staging ? withStagingHeaders(res) : res;
 
   // Never serve private source materials (signed protocols, drafts) from /public.
+  // Allow only intentionally published PDFs under /images/uprawnienia/.
+  const isPublicCredentialsPdf = pathDecoded.startsWith("/images/uprawnienia/");
   if (
     pathDecoded.startsWith("/do wykorzystania") ||
-    pathDecoded.endsWith(".pdf")
+    (pathDecoded.endsWith(".pdf") && !isPublicCredentialsPdf)
   ) {
     return respond(new NextResponse("Not Found", { status: 404 }));
   }
