@@ -86,7 +86,7 @@ export default function PszczynaPage() {
       <LocationLead
         cityName="Pszczyna"
         defaultCity="Pszczyna"
-        defaultService="przeglad"
+        defaultService=""
       />
     </PageShell>
   );

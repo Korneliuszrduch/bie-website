@@ -23,7 +23,7 @@ export default function KontaktPage() {
   return (
     <PageShell
       title="Kontakt"
-      lead="Umów przegląd, zamów wycenę albo wyślij faktury do analizy mocy biernej."
+      lead="Zadzwoń, zamów bezpłatną wycenę"
       crumbs={[{ label: "Kontakt" }]}
       showCta={false}
     >
@@ -49,13 +49,13 @@ export default function KontaktPage() {
           </p>
           <h2>Tematy</h2>
           <ul>
-            <li>Umów przegląd instalacji</li>
-            <li>Zamów wycenę (dane instalacji / zdjęcia rozdzielnicy)</li>
+            <li>Telefoniczna wycena</li>
             <li>
               <Link href="/uslugi/kompensacja-mocy-biernej">
-                Analiza faktur — moc bierna
+                Kompensacja mocy biernej
               </Link>
             </li>
+            <li>Zgłoszenia instalacji</li>
           </ul>
         </div>
         <LeadForm title="Formularz kontaktowy" submitLabel="Wyślij" />

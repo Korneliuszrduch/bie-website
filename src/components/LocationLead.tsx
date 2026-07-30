@@ -10,7 +10,7 @@ type Props = {
 export function LocationLead({
   cityName,
   defaultCity,
-  defaultService = "przeglad",
+  defaultService = "",
 }: Props) {
   return (
     <section className={styles.wrap} aria-labelledby="location-lead">

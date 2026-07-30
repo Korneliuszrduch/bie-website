@@ -126,7 +126,7 @@ export default function HomePage() {
             <LeadForm
               title="Umów przegląd / wycenę"
               submitLabel="Wyślij zgłoszenie"
-              defaultService="przeglad"
+              defaultService=""
             />
           </div>
         </div>
@@ -279,7 +279,7 @@ export default function HomePage() {
               compact
               title="Szybkie zgłoszenie"
               submitLabel="Wyślij"
-              defaultService="przeglad"
+              defaultService=""
             />
           </div>
         </div>

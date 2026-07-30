@@ -1,4 +1,10 @@
 import { NextResponse } from "next/server";
+import {
+  registerLeadInCrm,
+  subscribeLeadOnNetsendoList,
+  updateLeadDetails,
+  type BieLeadPayload,
+} from "@/lib/netsendoLeads";
 
 type LeadBody = {
   name?: string;
@@ -8,6 +14,10 @@ type LeadBody = {
   service?: string;
   propertyType?: string;
   message?: string;
+  selectedHasPhotovoltaics?: string;
+  selectedTypeOfBuilding?: string;
+  selectedNumberOfStoreys?: string;
+  selectednumberofsquaremetersofthebuilding?: string;
   sourceUrl?: string;
   referrer?: string;
   utmSource?: string;
@@ -41,15 +51,28 @@ function rateLimit(ip: string): boolean {
 }
 
 function validate(body: LeadBody): string | null {
-  if (body.website) return null; // honeypot — silently accept
+  if (body.website) return null;
   const name = (body.name ?? "").trim();
   const phone = (body.phone ?? "").replace(/\s/g, "");
   if (name.length < 2) return "Podaj imię.";
   if (!/^\+?[0-9]{9,15}$/.test(phone)) return "Podaj prawidłowy telefon.";
-  if (body.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+  const email = (body.email ?? "").trim();
+  if (!email) return "Podaj e-mail.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return "Nieprawidłowy e-mail.";
   }
+  const service = (body.service ?? "").trim();
+  if (!service || !["wycena", "kompensacja", "inne", "przeglad", "analiza-faktury"].includes(service)) {
+    return "Wybierz temat.";
+  }
   return null;
+}
+
+function crmEnabled(): boolean {
+  const flag = (process.env.CRM_LEADS_ENABLED ?? "true").toLowerCase();
+  if (flag === "false" || flag === "0" || flag === "no") return false;
+  // Empty CRM_API_URL still uses default register_mail.php when enabled
+  return true;
 }
 
 export async function POST(req: Request) {
@@ -71,7 +94,6 @@ export async function POST(req: Request) {
     );
   }
 
-  // Honeypot filled → fake success
   if (body.website) {
     return NextResponse.json({ ok: true, mock: true });
   }
@@ -81,7 +103,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error }, { status: 400 });
   }
 
-  const payload = {
+  const payload: BieLeadPayload = {
     name: (body.name ?? "").trim(),
     phone: (body.phone ?? "").trim(),
     email: (body.email ?? "").trim(),
@@ -89,6 +111,12 @@ export async function POST(req: Request) {
     service: (body.service ?? "").trim(),
     propertyType: (body.propertyType ?? "").trim(),
     message: (body.message ?? "").trim(),
+    selectedHasPhotovoltaics: (body.selectedHasPhotovoltaics ?? "").trim(),
+    selectedTypeOfBuilding: (body.selectedTypeOfBuilding ?? "").trim(),
+    selectedNumberOfStoreys: (body.selectedNumberOfStoreys ?? "").trim(),
+    selectednumberofsquaremetersofthebuilding: (
+      body.selectednumberofsquaremetersofthebuilding ?? ""
+    ).trim(),
     sourceUrl: body.sourceUrl ?? "",
     referrer: body.referrer ?? "",
     utmSource: body.utmSource ?? "",
@@ -96,37 +124,38 @@ export async function POST(req: Request) {
     utmCampaign: body.utmCampaign ?? "",
   };
 
-  const crmUrl = process.env.CRM_API_URL?.trim();
-  const crmKey = process.env.CRM_API_KEY?.trim();
-
-  if (crmUrl) {
-    try {
-      const res = await fetch(crmUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(crmKey ? { Authorization: `Bearer ${crmKey}` } : {}),
-        },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) {
-        console.error("[leads] CRM error", res.status);
-        return NextResponse.json(
-          { ok: false, error: "Błąd integracji CRM. Zadzwoń proszę bezpośrednio." },
-          { status: 502 },
-        );
-      }
-      return NextResponse.json({ ok: true });
-    } catch (err) {
-      console.error("[leads] CRM fetch failed", err);
-      return NextResponse.json(
-        { ok: false, error: "Błąd połączenia z CRM." },
-        { status: 502 },
-      );
-    }
+  if (!crmEnabled()) {
+    console.info("[leads:mock]", JSON.stringify(payload));
+    return NextResponse.json({ ok: true, mock: true });
   }
 
-  // Staging mock — log only, never expose secrets
-  console.info("[leads:mock]", JSON.stringify(payload));
-  return NextResponse.json({ ok: true, mock: true });
+  try {
+    // 1) CRM / Netsendo DB — jak „Dodaj kontakt” w crm-react
+    const registered = await registerLeadInCrm(payload);
+    const sid = registered.sid ?? 0;
+    const emailForUpdate = registered.email || payload.email;
+
+    // 2) Miasto + komentarz (wiadomość) bez nadpisywania innych pól
+    if (sid || emailForUpdate) {
+      await updateLeadDetails(sid, emailForUpdate, payload);
+    }
+
+    // 3) Lista Netsendo jak formularz na bezpieczneinstalacjeelektryczne.pl (mlid 289)
+    await subscribeLeadOnNetsendoList(payload);
+
+    return NextResponse.json({
+      ok: true,
+      sid: sid || undefined,
+      created: registered.created ?? undefined,
+    });
+  } catch (err) {
+    console.error("[leads] Netsendo/CRM failed", err);
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Błąd zapisu zgłoszenia. Zadzwoń proszę: 730 222 105.",
+      },
+      { status: 502 },
+    );
+  }
 }
