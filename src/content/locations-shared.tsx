@@ -37,7 +37,8 @@ const LOC: Record<string, Loc> = {
     slug: "katowice",
     name: "Katowice",
     locative: "Katowicach",
-    h1: "Usługi elektryczne w Katowicach",
+    h1: "Kompensacja mocy biernej i przeglądy w Katowicach",
+    indexable: true,
   },
   gliwice: {
     slug: "gliwice",

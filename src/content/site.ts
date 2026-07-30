@@ -151,7 +151,7 @@ export const LOCATIONS: LocationSummary[] = [
     slug: "katowice",
     name: "Katowice",
     href: "/lokalizacje/katowice",
-    hasUniqueContent: false,
+    hasUniqueContent: true,
   },
   {
     slug: "gliwice",

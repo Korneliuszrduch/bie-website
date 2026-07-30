@@ -58,6 +58,7 @@ export const LOCATION_REALIZATION_KEYS: Record<string, string[]> = {
   sosnicowice: ["sosnicowice"],
   gliwice: ["sosnicowice"],
   dankowice: ["dankowice"],
+  katowice: ["katowice"],
 };
 
 /**
@@ -72,6 +73,18 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
     serviceHref: "/uslugi/kompensacja-mocy-biernej",
     serviceLabel: "Oferta: kompensacja mocy biernej",
     photos: [
+      {
+        src: "/images/realizacje/kompensacja/kompensator_katowice_agd_rtv.jpg",
+        alt: "Kompensator mocy biernej — Katowice, sklep AGD/RTV",
+        location: "Katowice (sklep AGD/RTV)",
+        locationKey: "katowice",
+        problem:
+          "Sklep AGD/RTV w Katowicach — klient płacił ok. 1500 zł netto miesięcznie za moc bierną, głównie pojemnościową.",
+        solution:
+          "Najpierw zweryfikowaliśmy fakturę, potem na miejscu wykonaliśmy oględziny i pomiary oraz ustaliliśmy z klientem zakres prac. Wymagania: cicha praca urządzenia (blisko strefy sprzedaży) oraz dostęp online. Kompensator zamontowaliśmy wspólnie ze współpracownikiem.",
+        result:
+          "Po montażu ogarnęliśmy także temat firmowego przeglądu elektrycznego. Klient ma cichy kompensator z dostępem online i kontrolę nad opłatami za moc bierną.",
+      },
       {
         src: "/images/realizacje/kompensacja/kompensator_panele_zabrze_.jpg",
         alt: "Kompensator mocy biernej przy panelach podłogowych — Zabrze",
