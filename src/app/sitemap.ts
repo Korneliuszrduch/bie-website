@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { REALIZATION_PROJECTS } from "@/content/realizations";
 import { LOCATIONS, SERVICES } from "@/content/site";
 import { getSiteUrl, isIndexingAllowed } from "@/lib/env";
 
@@ -26,8 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locationPaths = LOCATIONS.filter((l) => l.hasUniqueContent).map(
     (l) => l.href,
   );
+  const realizationPaths = REALIZATION_PROJECTS.map(
+    (p) => `/realizacje/${p.slug}`,
+  );
 
-  return [...staticPaths, ...servicePaths, ...locationPaths].map((path) => ({
+  return [
+    ...staticPaths,
+    ...servicePaths,
+    ...locationPaths,
+    ...realizationPaths,
+  ].map((path) => ({
     url: `${base}${path || "/"}`,
     lastModified: now,
     changeFrequency: path === "" ? "weekly" : "monthly",

@@ -1,4 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
+import { LeadForm } from "@/components/LeadForm";
+import { MapEmbed } from "@/components/MapEmbed";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { CTA_LINKS, LOCATIONS } from "@/content/site";
 import { getAllServices } from "@/content/services";
 import { getCompanyConfig } from "@/lib/env";
@@ -28,7 +32,30 @@ const HOME_FAQ = [
   },
   {
     q: "Jaka jest podstawa prawna przeglądu?",
-    a: "Art. 62 ust. 1 pkt 2 ustawy – Prawo budowlane (jak w ofercie wysyłanej do klientów).",
+    a: "Art. 62 ust. 1 pkt 2 ustawy – Prawo budowlane.",
+  },
+];
+
+const PROCESS = [
+  {
+    n: "01",
+    t: "Zgłoszenie",
+    d: "Formularz, telefon albo faktury do analizy — ustalamy zakres.",
+  },
+  {
+    n: "02",
+    t: "Wycena",
+    d: "Indywidualna oferta na podstawie danych o instalacji (cena nie jest z cennika).",
+  },
+  {
+    n: "03",
+    t: "Pomiary na obiekcie",
+    d: "Przegląd pomiarowy — nie tylko wizualnie.",
+  },
+  {
+    n: "04",
+    t: "Protokół",
+    d: "Wyniki i zalecenia na piśmie — do ubezpieczyciela i na spokój.",
   },
 ];
 
@@ -52,71 +79,90 @@ export default function HomePage() {
   return (
     <main>
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>{company.name}</p>
-          <h1 className={styles.h1}>
-            Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy
-            biernej na {company.serviceArea}
-          </h1>
-          <p className={styles.lead}>
-            Przegląd wykonuję pomiarowo — nie tylko wizualnie. Po pracy
-            otrzymujesz protokół z wynikami i zaleceniami. Przy mocy biernej
-            zaczynamy od analizy faktur, a nie od zgadywania ceny urządzenia.
-          </p>
-          <div className={styles.ctaRow}>
-            <Link className={styles.btnPrimary} href={CTA_LINKS.review.href}>
-              {CTA_LINKS.review.label}
-            </Link>
-            <Link className={styles.btnSecondary} href={CTA_LINKS.quote.href}>
-              {CTA_LINKS.quote.label}
-            </Link>
-            <Link className={styles.btnGhost} href={CTA_LINKS.invoice.href}>
-              {CTA_LINKS.invoice.label}
-            </Link>
-            <a className={styles.btnPhone} href={telHref}>
-              Zadzwoń: {company.phoneDisplay}
-            </a>
-            {tel2 && company.phoneSecondaryDisplay ? (
-              <a className={styles.btnPhone} href={tel2}>
-                {company.phoneSecondaryDisplay}
+        <div className={styles.heroGrid}>
+          <div className={styles.heroCopy}>
+            <p className={styles.badge}>Obsługujemy {company.serviceArea}</p>
+            <h1 className={styles.h1}>
+              Przeglądy instalacji elektrycznych z protokołem
+            </h1>
+            <p className={styles.lead}>
+              Pomiary, nie „papier”. Po przeglądzie dostajesz wyniki i zalecenia.
+              Przy mocy biernej zaczynamy od analizy faktur.
+            </p>
+            <ul className={styles.bullets}>
+              <li>5-letni przegląd instalacji — zakres jak w ofercie</li>
+              <li>Protokół z pomiarów (izolacja, uziemienie, RCD, SWZ…)</li>
+              <li>Kompensacja mocy biernej po analizie faktur</li>
+            </ul>
+            <div className={styles.heroCtas}>
+              <a className={styles.btnPhone} href={telHref}>
+                Zadzwoń: {company.phoneDisplay}
               </a>
-            ) : null}
+              {tel2 && company.phoneSecondaryDisplay ? (
+                <a className={styles.btnGhost} href={tel2}>
+                  {company.phoneSecondaryDisplay}
+                </a>
+              ) : null}
+              <Link className={styles.btnGhost} href={CTA_LINKS.invoice.href}>
+                Wyślij fakturę do analizy
+              </Link>
+            </div>
+            <figure className={styles.heroPhoto}>
+              <Image
+                src="/images/hero-main.jpg"
+                alt={`${company.personName} przy aucie serwisowym — przypomnienie o obowiązkowym przeglądzie elektrycznym`}
+                width={800}
+                height={600}
+                priority
+                sizes="(max-width: 960px) 100vw, 420px"
+                className={styles.heroPhotoImg}
+              />
+              <figcaption className={styles.heroPhotoCap}>
+                {company.personName} · przeglądy instalacji elektrycznych
+              </figcaption>
+            </figure>
+          </div>
+          <div className={styles.heroForm} id="formularz">
+            <LeadForm
+              title="Umów przegląd / wycenę"
+              submitLabel="Wyślij zgłoszenie"
+              defaultService="przeglad"
+            />
           </div>
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="services-heading">
+      <section className={styles.section} aria-labelledby="services">
         <div className={styles.container}>
-          <h2 id="services-heading" className={styles.h2}>
-            Najważniejsze usługi
-          </h2>
-          <p className={styles.sectionLead}>
-            Zakres jak w ofertach wysyłanych do klientów: przegląd 5-letni z
-            protokołem, pomiary, kompensacja mocy biernej po analizie faktur.
-          </p>
-          <ul className={styles.cardGrid}>
-            {featured.map((service) => (
-              <li key={service.slug} className={styles.card}>
-                <h3 className={styles.h3}>
-                  <Link href={`/uslugi/${service.slug}`}>{service.title}</Link>
-                </h3>
-                <p>{service.lead}</p>
+          <div className={styles.sectionHead}>
+            <h2 id="services">Najważniejsze usługi</h2>
+            <p>
+              Zakres zgodny z ofertami wysyłanymi do klientów — bez wymyślonych
+              cen przeglądu instalacji.
+            </p>
+          </div>
+          <ul className={styles.cards}>
+            {featured.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/uslugi/${s.slug}`} className={styles.card}>
+                  <h3>{s.title}</h3>
+                  <p>{s.lead}</p>
+                  <span>Szczegóły →</span>
+                </Link>
               </li>
             ))}
           </ul>
-          <p>
-            <Link className={styles.textLink} href="/uslugi">
-              Wszystkie usługi
-            </Link>
+          <p className={styles.more}>
+            <Link href="/uslugi">Wszystkie usługi</Link>
           </p>
         </div>
       </section>
 
-      <section className={styles.sectionAlt} aria-labelledby="audience-heading">
+      <section className={styles.sectionAlt} aria-labelledby="audience">
         <div className={styles.container}>
-          <h2 id="audience-heading" className={styles.h2}>
-            Dla kogo pracujemy
-          </h2>
+          <div className={styles.sectionHead}>
+            <h2 id="audience">Dla kogo pracujemy</h2>
+          </div>
           <ul className={styles.chips}>
             {[
               "domy",
@@ -132,76 +178,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="why-heading">
+      <section className={styles.section} aria-labelledby="process">
         <div className={styles.container}>
-          <h2 id="why-heading" className={styles.h2}>
-            Dlaczego warto wybrać firmę
-          </h2>
-          <ul className={styles.bullets}>
+          <div className={styles.sectionHead}>
+            <h2 id="process">Jak wygląda współpraca</h2>
+            <p>Prosty przebieg — od zgłoszenia do protokołu.</p>
+          </div>
+          <ol className={styles.process}>
+            {PROCESS.map((step) => (
+              <li key={step.n}>
+                <span className={styles.stepN}>{step.n}</span>
+                <h3>{step.t}</h3>
+                <p>{step.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className={styles.sectionDark} aria-labelledby="why">
+        <div className={styles.container}>
+          <div className={styles.sectionHeadLight}>
+            <h2 id="why">Dlaczego warto</h2>
+          </div>
+          <ul className={styles.why}>
             <li>
-              Pomiary faktyczne — nie robię „tylko papieru”; dostajesz konkretną
-              informację, co wymaga poprawy
+              <strong>Pomiary faktyczne</strong>
+              <span>Nie robię „tylko papieru” — dostajesz konkretne wyniki.</span>
             </li>
             <li>
-              Protokół z wynikami po przeglądzie (zakres jak w ofercie 5-letniej)
+              <strong>Protokół po przeglądzie</strong>
+              <span>Dokument z zaleceniami, m.in. pod ubezpieczyciela.</span>
             </li>
-            <li>Uprawnienia elektryczne (PDF dostępny na żądanie / na WP)</li>
-            <li>Możliwość płatności bezgotówkowej</li>
-            <li>Obsługa klientów indywidualnych i firm na {company.serviceArea}</li>
-            <li>mgr inż. elektryk Korneliusz Rduch</li>
+            <li>
+              <strong>Wycena indywidualna</strong>
+              <span>Na podstawie danych o instalacji, nie sztywnego cennika.</span>
+            </li>
+            <li>
+              <strong>{company.personName}</strong>
+              <span>Uprawnienia elektryczne · płatność bezgotówkowa.</span>
+            </li>
           </ul>
         </div>
       </section>
 
-      <section className={styles.sectionAlt} aria-labelledby="scope-heading">
-        <div className={styles.container}>
-          <h2 id="scope-heading" className={styles.h2}>
-            Zakres przeglądu 5-letniego (z oferty)
-          </h2>
-          <ul className={styles.bullets}>
-            <li>Oględziny instalacji i rozdzielnic</li>
-            <li>Pomiary rezystancji izolacji (Up 500 V DC)</li>
-            <li>Ciągłość przewodów ochronnych, uziemienie, SWZ</li>
-            <li>Test RCD, kolejność faz</li>
-            <li>PV i odgromowa — jeśli dotyczy</li>
-          </ul>
-          <p className={styles.sectionLead}>
-            Podstawa prawna: art. 62 ust. 1 pkt 2 ustawy – Prawo budowlane.
-            Oferta ważna 12 miesięcy. Cena — indywidualna.
-          </p>
-          <Link
-            className={styles.textLink}
-            href="/uslugi/przeglady-instalacji-elektrycznych"
-          >
-            Szczegóły przeglądu instalacji
-          </Link>
-        </div>
-      </section>
+      <ReviewsSection />
 
-      <section className={styles.section} aria-labelledby="projects-heading">
+      <section className={styles.sectionAlt} aria-labelledby="area">
         <div className={styles.container}>
-          <h2 id="projects-heading" className={styles.h2}>
-            Realizacje
-          </h2>
-          <p className={styles.sectionLead}>
-            Na etapie testowym nie publikujemy fikcyjnych case studies. Prawdziwe
-            realizacje dodamy po dostarczeniu materiałów (m.in. kompensacja mocy
-            biernej).
-          </p>
-          <Link className={styles.textLink} href="/realizacje">
-            Sekcja realizacji
-          </Link>
-        </div>
-      </section>
-
-      <section className={styles.sectionAlt} aria-labelledby="area-heading">
-        <div className={styles.container}>
-          <h2 id="area-heading" className={styles.h2}>
-            Obszar działania
-          </h2>
-          <p className={styles.sectionLead}>
-            Działamy na {company.serviceArea} — m.in. Pszczyna i okolice oraz:
-          </p>
+          <div className={styles.sectionHead}>
+            <h2 id="area">Obszar działania</h2>
+            <p>Pszczyna i okolice oraz miasta na {company.serviceArea}:</p>
+          </div>
           <ul className={styles.chips}>
             {LOCATIONS.map((loc) => (
               <li key={loc.slug}>
@@ -209,26 +237,15 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
+          <MapEmbed title="Mapa — Bezpieczne Instalacje Elektryczne" />
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="reviews-heading">
-        <div className={styles.container}>
-          <h2 id="reviews-heading" className={styles.h2}>
-            Opinie klientów
-          </h2>
-          <p className={styles.placeholder}>
-            Placeholder — bez fikcyjnych opinii. Po migracji można podłączyć
-            zweryfikowane referencje / wizytówkę Google.
-          </p>
-        </div>
-      </section>
-
-      <section className={styles.sectionAlt} aria-labelledby="faq-heading">
-        <div className={styles.container}>
-          <h2 id="faq-heading" className={styles.h2}>
-            FAQ
-          </h2>
+      <section className={styles.section} aria-labelledby="faq">
+        <div className={styles.containerNarrow}>
+          <div className={styles.sectionHead}>
+            <h2 id="faq">Najczęstsze pytania</h2>
+          </div>
           <div className={styles.faq}>
             {HOME_FAQ.map((item) => (
               <details key={item.q}>
@@ -240,42 +257,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="contact-heading">
+      <section className={styles.sectionCta} aria-labelledby="final-cta">
         <div className={styles.container}>
-          <h2 id="contact-heading" className={styles.h2}>
-            Formularz i dane kontaktowe
-          </h2>
-          <p className={styles.sectionLead}>
-            Pełny formularz z API leadów — etap 3. Teraz zadzwoń lub napisz:
-          </p>
-          <p>
-            <strong>Tel.</strong>{" "}
-            <a href={telHref}>{company.phoneDisplay}</a>
-            {company.phoneSecondaryDisplay ? (
-              <>
-                {" · "}
-                <a href={tel2!}>{company.phoneSecondaryDisplay}</a>
-              </>
-            ) : null}
-            <br />
-            <strong>E-mail:</strong>{" "}
-            <a href={`mailto:${company.email}`}>{company.email}</a>
-            <br />
-            <strong>Adres:</strong> {company.address}
-            <br />
-            <strong>Podmiot:</strong> {company.legalName}
-            {company.nip ? `, NIP ${company.nip}` : ""}
-          </p>
-          <div className={styles.ctaRow}>
-            <Link className={styles.btnPrimary} href="/kontakt">
-              Przejdź do kontaktu
-            </Link>
-            <Link className={styles.btnGhost} href={CTA_LINKS.invoice.href}>
-              Wyślij fakturę do analizy
-            </Link>
+          <div className={styles.finalGrid}>
+            <div>
+              <h2 id="final-cta">Gotowy na przegląd lub wycenę?</h2>
+              <p>
+                Zadzwoń albo wypełnij formularz — ustalimy termin i zakres.
+              </p>
+              <p className={styles.finalPhones}>
+                <a href={telHref}>{company.phoneDisplay}</a>
+                {tel2 && company.phoneSecondaryDisplay ? (
+                  <>
+                    {" · "}
+                    <a href={tel2}>{company.phoneSecondaryDisplay}</a>
+                  </>
+                ) : null}
+              </p>
+            </div>
+            <LeadForm
+              compact
+              title="Szybkie zgłoszenie"
+              submitLabel="Wyślij"
+              defaultService="przeglad"
+            />
           </div>
         </div>
       </section>
+
+      <div className={styles.mobileBar}>
+        <a href={telHref}>Zadzwoń</a>
+        <a href="#formularz">Umów przegląd</a>
+      </div>
     </main>
   );
 }

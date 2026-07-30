@@ -1,10 +1,13 @@
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
+import { RealizationGallery } from "@/components/RealizationGallery";
+import { REALIZATION_PROJECTS } from "@/content/realizations";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Realizacje",
   description:
-    "Wybrane realizacje przeglądów, pomiarów i kompensacji mocy biernej. Na stagingu wyłącznie dane demo.",
+    "Zdjęcia z realizacji kompensacji mocy biernej i innych prac elektrycznych na Śląsku.",
   path: "/realizacje",
 });
 
@@ -12,11 +15,24 @@ export default function RealizacjePage() {
   return (
     <PageShell
       title="Realizacje"
-      lead="System realizacji (dane lokalne TS/JSON + strony [slug]) powstanie w etapie 3. Na razie nie publikujemy fikcyjnych case studies jako prawdziwych."
+      lead="Wybrane zdjęcia z wykonanych instalacji. Lokalizacje podajemy tylko tam, gdzie są potwierdzone."
       crumbs={[{ label: "Realizacje" }]}
     >
+      {REALIZATION_PROJECTS.map((project) => (
+        <RealizationGallery
+          key={project.slug}
+          project={project}
+          showHeader
+          detailHref={`/realizacje/${project.slug}`}
+        />
+      ))}
       <p>
-        Placeholder listy. Przykładowe wpisy demo będą wyraźnie oznaczone.
+        Szukasz wyceny? Zobacz{" "}
+        <Link href="/uslugi/kompensacja-mocy-biernej">
+          ofertę kompensacji mocy biernej
+        </Link>{" "}
+        albo{" "}
+        <Link href="/kontakt">skontaktuj się z nami</Link>.
       </p>
     </PageShell>
   );

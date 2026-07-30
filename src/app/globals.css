@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #f4f6f8;
+  --color-bg: #eef2f6;
   --color-surface: #ffffff;
-  --color-ink: #142033;
-  --color-muted: #5b6b7c;
-  --color-primary: #0c3b5e;
-  --color-accent: #e6a100;
-  --color-border: #d7dee6;
+  --color-ink: #0f1c2e;
+  --color-muted: #5a6b7d;
+  --color-primary: #0a3354;
+  --color-primary-deep: #07263f;
+  --color-accent: #f0b429;
+  --color-accent-dark: #d49a12;
+  --color-border: #d3dce6;
   --container: 72rem;
   --background: var(--color-bg);
   --foreground: var(--color-ink);
@@ -30,10 +32,7 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  background:
-    radial-gradient(1200px 500px at 10% -10%, #d9e8f4 0%, transparent 55%),
-    radial-gradient(900px 400px at 100% 0%, #f7e9c4 0%, transparent 45%),
-    var(--color-bg);
+  background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-ibm-plex-sans), "Segoe UI", sans-serif;
   line-height: 1.5;

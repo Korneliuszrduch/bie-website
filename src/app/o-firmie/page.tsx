@@ -41,11 +41,37 @@ export default function OFirmiePage() {
         <li>Możliwość płatności bezgotówkowej</li>
       </ul>
 
-      <h2>Uprawnienia</h2>
+      <h2>Uprawnienia i dokumenty</h2>
+      <ul>
+        <li>
+          <a
+            href={company.credentialsPdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Uprawnienia elektryczne (PDF)
+          </a>
+        </li>
+        <li>
+          <a
+            href={company.calibrationPdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Świadectwo wzorcowania (PDF)
+          </a>
+        </li>
+      </ul>
+
+      <h2>Opinie</h2>
       <p>
-        Na stronie produkcyjnej WordPress dostępny jest dokument uprawnień (PDF
-        D1/E1). Na stagingu nie hostujemy kopii pliku — link pojawi się po
-        migracji materiałów.
+        <a
+          href={company.googleReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Zostaw opinię w Google
+        </a>
       </p>
 
       <h2>Usługi</h2>
