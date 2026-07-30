@@ -20,19 +20,23 @@ export const metadata = buildPageMetadata({
 const HOME_FAQ = [
   {
     q: "Czy przegląd to tylko oględziny?",
-    a: "Nie. W ofercie 5-letniego przeglądu są pomiary izolacji, uziemienia, ciągłości PE, SWZ, test RCD i inne elementy — na końcu protokół z zaleceniami.",
+    a: "Nie. Przegląd obejmuje profesjonalne pomiary instalacji, między innymi rezystancji izolacji, działania wyłączników RCD, impedancji pętli zwarcia, ciągłości przewodów ochronnych oraz uziemienia. Po zakończeniu klient otrzymuje protokół z wynikami i zaleceniami.",
   },
   {
     q: "Jak przygotować wycenę przeglądu?",
-    a: "Potrzebuję m.in. liczby gniazdek, RCD, rozdzielnic, informacji o odgromowej oraz zdjęć rozdzielnicy.",
+    a: "W większości przypadków wystarczy krótka rozmowa telefoniczna lub kilka zdjęć rozdzielnicy. Jeśli będą potrzebne dodatkowe informacje, podpowiemy, co przygotować. Wycena jest bezpłatna i nie zobowiązuje do skorzystania z usługi.",
   },
   {
     q: "Jak zacząć temat kompensacji mocy biernej?",
-    a: "Wyślij 3 ostatnie faktury za energię (przy sezonowości — 12 miesięcy). Na ich podstawie sprawdzę, czy i w jakiej ilości występuje moc bierna.",
+    a: "Najczęściej wystarczą 2–3 ostatnie faktury za energię elektryczną. Bezpłatnie sprawdzimy, czy występują opłaty za moc bierną i czy zastosowanie kompensatora będzie opłacalne.",
   },
   {
     q: "Jaka jest podstawa prawna przeglądu?",
-    a: "Art. 62 ust. 1 pkt 2 ustawy – Prawo budowlane.",
+    a: "Obowiązek okresowej kontroli instalacji elektrycznej wynika z art. 62 ust. 1 pkt 2 ustawy Prawo budowlane. Zakres i częstotliwość przeglądu zależą od rodzaju obiektu oraz warunków jego użytkowania.",
+  },
+  {
+    q: "Czy usuwamy awarie i braki wykryte podczas przeglądu?",
+    a: "Tak, po uzgodnieniu. To usługi dodatkowo płatne, ale często jest to tańsze niż wzywanie kolejnego fachowca — znamy już instalację z przeglądu i protokołu.",
   },
 ];
 

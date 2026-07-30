@@ -260,7 +260,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
         location: "Sośnicowice (k. Gliwic)",
         locationKey: "sosnicowice",
         problem:
-          "Przegląd instalacji elektrycznej w domu wykazał niezgodność układu sieci zasilającej: od dostawcy energia była w układzie TNC, podczas gdy instalacja odbiorcza powinna pracować w układzie TT. Dodatkowo stwierdzono obniżoną izolację na 3 z 17 wyłączników RCD, brak RCD na kilku obwodach zabezpieczonych oraz obniżoną rezystancję uziomu.",
+          "Przegląd instalacji elektrycznej w domu wykazał niezgodność układu sieci zasilającej: od dostawcy sieć była w układzie TNC, podczas gdy instalacja odbiorcza powinna pracować w układzie TT. Dodatkowo stwierdzono obniżoną izolację na 3 z 17 wyłączników RCD, brak RCD na kilku obwodach zabezpieczonych oraz obniżoną rezystancję uziomu.",
         solution:
           "Dostosowaliśmy sieć do prawidłowego układu pracy podczas pierwszej wizyty. Pozostałe niezgodności udokumentowaliśmy w protokole.",
         result:
