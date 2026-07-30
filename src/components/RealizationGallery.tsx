@@ -27,11 +27,24 @@ function caseImages(photo: RealizationPhoto) {
   ];
 }
 
-function CaseCopy({ photo }: { photo: RealizationPhoto }) {
+function CaseCopy({
+  photo,
+  detailHref,
+}: {
+  photo: RealizationPhoto;
+  detailHref?: string;
+}) {
   const hasCopy = photoHasCaseCopy(photo);
+  const locationNode = detailHref ? (
+    <Link href={`${detailHref}?foto=${encodeURIComponent(photo.src)}`}>
+      {photo.location}
+    </Link>
+  ) : (
+    photo.location
+  );
   return (
     <div className={styles.caseBody}>
-      <h3 className={styles.caseLocation}>{photo.location}</h3>
+      <h3 className={styles.caseLocation}>{locationNode}</h3>
       {hasCopy ? (
         <dl className={styles.caseDl}>
           {photo.problem.trim() ? (
@@ -109,13 +122,29 @@ export function RealizationGallery({
               >
                 {multi ? (
                   <>
-                    <CaseCopy photo={photo} />
-                    <CaseImageSlider images={images} label={photo.location} />
+                    <CaseCopy photo={photo} detailHref={detailHref} />
+                    <CaseImageSlider
+                      images={images}
+                      label={photo.location}
+                      detailHref={
+                        detailHref
+                          ? `${detailHref}?foto=${encodeURIComponent(photo.src)}`
+                          : undefined
+                      }
+                    />
                   </>
                 ) : (
                   <>
-                    <CaseImageSlider images={images} label={photo.location} />
-                    <CaseCopy photo={photo} />
+                    <CaseImageSlider
+                      images={images}
+                      label={photo.location}
+                      detailHref={
+                        detailHref
+                          ? `${detailHref}?foto=${encodeURIComponent(photo.src)}`
+                          : undefined
+                      }
+                    />
+                    <CaseCopy photo={photo} detailHref={detailHref} />
                   </>
                 )}
               </li>
@@ -124,27 +153,32 @@ export function RealizationGallery({
         </ul>
       ) : (
         <ul className={styles.grid}>
-          {project.photos.map((photo) => (
-            <li key={photo.src} className={styles.item}>
-              <a
-                href={detailHref ?? photo.src}
-                {...(detailHref
-                  ? {}
-                  : { target: "_blank", rel: "noopener noreferrer" })}
-                className={styles.link}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={800}
-                  height={600}
-                  sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
-                  className={styles.img}
-                />
-                <span className={styles.location}>{photo.location}</span>
-              </a>
-            </li>
-          ))}
+          {project.photos.map((photo) => {
+            const href = detailHref
+              ? `${detailHref}?foto=${encodeURIComponent(photo.src)}`
+              : photo.src;
+            return (
+              <li key={photo.src} className={styles.item}>
+                <a
+                  href={href}
+                  {...(detailHref
+                    ? {}
+                    : { target: "_blank", rel: "noopener noreferrer" })}
+                  className={styles.link}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={800}
+                    height={600}
+                    sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                    className={styles.img}
+                  />
+                  <span className={styles.location}>{photo.location}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       )}
     </section>

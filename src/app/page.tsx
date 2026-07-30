@@ -3,7 +3,7 @@ import Link from "next/link";
 import { LeadForm } from "@/components/LeadForm";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ReviewsSection } from "@/components/ReviewsSection";
-import { CTA_LINKS, LOCATIONS } from "@/content/site";
+import { LOCATIONS } from "@/content/site";
 import { getAllServices } from "@/content/services";
 import { getCompanyConfig } from "@/lib/env";
 import { buildPageMetadata } from "@/lib/seo";
@@ -13,7 +13,7 @@ export const metadata = buildPageMetadata({
   title:
     "Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy biernej",
   description:
-    "5-letni przegląd instalacji z protokołem, pomiary elektryczne i kompensacja mocy biernej na Śląsku. Umów przegląd lub wyślij fakturę do analizy.",
+    "5-letni przegląd instalacji z protokołem, pomiary elektryczne i kompensacja mocy biernej na Śląsku.",
   path: "/",
 });
 
@@ -33,6 +33,25 @@ const HOME_FAQ = [
   {
     q: "Jaka jest podstawa prawna przeglądu?",
     a: "Art. 62 ust. 1 pkt 2 ustawy – Prawo budowlane.",
+  },
+];
+
+const STATS = [
+  {
+    value: "150+",
+    label: "przeglądów instalacji z protokołem",
+  },
+  {
+    value: "5+",
+    label: "lat doświadczenia na Śląsku",
+  },
+  {
+    value: "Domy i firmy",
+    label: "ten sam zakres pomiarów i dokumentacji",
+  },
+  {
+    value: "Protokół",
+    label: "pod ubezpieczyciela i przepisy (art. 62)",
   },
 ];
 
@@ -83,7 +102,8 @@ export default function HomePage() {
           <div className={styles.heroCopy}>
             <p className={styles.badge}>Obsługujemy {company.serviceArea}</p>
             <h1 className={styles.h1}>
-              Przeglądy instalacji elektrycznych z protokołem
+              Przeglądy instalacji elektrycznych dla domów i firm. Protokół
+              zgodny z wymaganiami ubezpieczycieli i przepisami.
             </h1>
             <p className={styles.lead}>
               Pomiary, nie „papier”. Po przeglądzie dostajesz wyniki i zalecenia.
@@ -98,14 +118,14 @@ export default function HomePage() {
               <a className={styles.btnPhone} href={telHref}>
                 Zadzwoń: {company.phoneDisplay}
               </a>
+              <a className={styles.btnGhost} href="#formularz">
+                Wypełnij formularz kontaktowy
+              </a>
               {tel2 && company.phoneSecondaryDisplay ? (
                 <a className={styles.btnGhost} href={tel2}>
                   {company.phoneSecondaryDisplay}
                 </a>
               ) : null}
-              <Link className={styles.btnGhost} href={CTA_LINKS.invoice.href}>
-                Wyślij fakturę do analizy
-              </Link>
             </div>
             <figure className={styles.heroPhoto}>
               <Image
@@ -124,11 +144,24 @@ export default function HomePage() {
           </div>
           <div className={styles.heroForm} id="formularz">
             <LeadForm
-              title="Umów przegląd / wycenę"
+              title="Wypełnij formularz kontaktowy"
               submitLabel="Wyślij zgłoszenie"
               defaultService=""
             />
           </div>
+        </div>
+      </section>
+
+      <section className={styles.statsSection} aria-label="W liczbach">
+        <div className={styles.container}>
+          <ul className={styles.stats}>
+            {STATS.map((stat) => (
+              <li key={stat.value} className={styles.stat}>
+                <p className={styles.statValue}>{stat.value}</p>
+                <p className={styles.statLabel}>{stat.label}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -287,7 +320,7 @@ export default function HomePage() {
 
       <div className={styles.mobileBar}>
         <a href={telHref}>Zadzwoń</a>
-        <a href="#formularz">Umów przegląd</a>
+        <a href="#formularz">Wypełnij formularz kontaktowy</a>
       </div>
     </main>
   );

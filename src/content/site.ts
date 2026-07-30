@@ -179,7 +179,7 @@ export const MAIN_NAV: NavItem[] = [
 ];
 
 export const CTA_LINKS = {
-  review: { href: "/kontakt?temat=przeglad", label: "Umów przegląd" },
+  review: { href: "/kontakt", label: "Wypełnij formularz kontaktowy" },
   quote: { href: "/kontakt?temat=wycena", label: "Zamów wycenę" },
   invoice: {
     href: "/kontakt?temat=analiza-faktury",

@@ -40,7 +40,11 @@ export function RelatedRealizations({
           <h3 className={styles.sub}>
             <Link href={`/realizacje/${project.slug}`}>{project.title}</Link>
           </h3>
-          <RealizationGallery project={project} layout="cases" />
+          <RealizationGallery
+            project={project}
+            layout="cases"
+            detailHref={`/realizacje/${project.slug}`}
+          />
         </div>
       ))}
     </section>

@@ -30,10 +30,11 @@ export function Header() {
 
         <div className={styles.actions}>
           <a className={styles.phone} href={telHref}>
-            {company.phoneDisplay}
+            <span className={styles.phoneLabel}>Zadzwoń</span>
+            <span className={styles.phoneNum}>{company.phoneDisplay}</span>
           </a>
           <Link className={styles.cta} href={CTA_LINKS.review.href}>
-            Umów przegląd
+            Wypełnij formularz kontaktowy
           </Link>
         </div>
       </div>

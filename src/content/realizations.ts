@@ -26,6 +26,26 @@ export type RealizationProject = {
   photos: RealizationPhoto[];
 };
 
+/** Put the clicked photo first on /realizacje/[slug]?foto=… */
+export function reorderPhotosBySrc(
+  photos: RealizationPhoto[],
+  fotoSrc?: string | null,
+): RealizationPhoto[] {
+  if (!fotoSrc) return photos;
+  const decoded = (() => {
+    try {
+      return decodeURIComponent(fotoSrc);
+    } catch {
+      return fotoSrc;
+    }
+  })();
+  const index = photos.findIndex(
+    (p) => p.src === decoded || p.src.endsWith(decoded) || decoded.endsWith(p.src),
+  );
+  if (index <= 0) return photos;
+  return [photos[index], ...photos.slice(0, index), ...photos.slice(index + 1)];
+}
+
 /**
  * Which realization locationKeys belong on a city page
  * (Pszczyna includes nearby Goczałkowice-Zdrój and Kozy).
@@ -164,7 +184,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
         solution:
           "Wykonano okresową kontrolę z oględzinami i pomiarami (izolacja, ciągłość PE, RCD, uziemienie, impedancja pętli zwarcia) oraz sporządzono protokół zgodnie z art. 62 Prawa budowlanego.",
         result:
-          "Nieprawidłowości zostały udokumentowane w protokole — instalacja nie spełnia w pełni wymagań bezpieczeństwa i wymaga modernizacji oraz usunięcia usterek.",
+          "Nieprawidłowości zostały udokumentowane w protokole. Umówiliśmy się z klientem na naprawę i przywrócenie sieci do w pełni sprawnego, bezpiecznego stanu.",
         gallery: [
           {
             src: "/images/realizacje/przeglady_elektryczne/dankowice_protokol_p12_01.jpg",
@@ -242,9 +262,9 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
         problem:
           "Przegląd instalacji elektrycznej w domu wykazał niezgodność układu sieci zasilającej: od dostawcy energia była w układzie TNC, podczas gdy instalacja odbiorcza powinna pracować w układzie TT. Dodatkowo stwierdzono obniżoną izolację na 3 z 17 wyłączników RCD, brak RCD na kilku obwodach zabezpieczonych oraz obniżoną rezystancję uziomu.",
         solution:
-          "Dostosowaliśmy sieć do prawidłowego układu pracy oraz udokumentowaliśmy wszystkie niezgodności w protokole przeglądu.",
+          "Dostosowaliśmy sieć do prawidłowego układu pracy podczas pierwszej wizyty. Pozostałe niezgodności udokumentowaliśmy w protokole.",
         result:
-          "Jesteśmy umówieni na naprawę wykrytych usterek (RCD, izolacja, uziom).",
+          "Jesteśmy umówieni na naprawę pozostałych wykrytych usterek.",
       },
       {
         src: "/images/realizacje/kompensacja/kompensator_pszczyna_browar.jpg",

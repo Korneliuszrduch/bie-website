@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
 import type { RealizationGalleryImage } from "@/content/realizations";
 import styles from "./CaseImageSlider.module.css";
@@ -8,9 +9,11 @@ import styles from "./CaseImageSlider.module.css";
 type Props = {
   images: RealizationGalleryImage[];
   label: string;
+  /** When set, main image click goes to this URL instead of lightbox */
+  detailHref?: string;
 };
 
-export function CaseImageSlider({ images, label }: Props) {
+export function CaseImageSlider({ images, label, detailHref }: Props) {
   const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const labelId = useId();
@@ -71,6 +74,19 @@ export function CaseImageSlider({ images, label }: Props) {
 
   if (!current || total === 0) return null;
 
+  const media = (
+    <Image
+      key={current.src}
+      src={current.src}
+      alt={current.alt}
+      width={1200}
+      height={900}
+      sizes="(max-width: 720px) 100vw, 640px"
+      className={styles.img}
+      priority={index === 0}
+    />
+  );
+
   return (
     <>
       <div
@@ -86,23 +102,24 @@ export function CaseImageSlider({ images, label }: Props) {
         </p>
 
         <div className={styles.stage}>
-          <button
-            type="button"
-            className={styles.media}
-            onClick={() => setLightbox(true)}
-            aria-label={`Powiększ zdjęcie: ${current.alt}`}
-          >
-            <Image
-              key={current.src}
-              src={current.src}
-              alt={current.alt}
-              width={1200}
-              height={900}
-              sizes="(max-width: 720px) 100vw, 640px"
-              className={styles.img}
-              priority={index === 0}
-            />
-          </button>
+          {detailHref ? (
+            <Link
+              href={detailHref}
+              className={styles.media}
+              aria-label={`Zobacz realizację: ${current.alt}`}
+            >
+              {media}
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className={styles.media}
+              onClick={() => setLightbox(true)}
+              aria-label={`Powiększ zdjęcie: ${current.alt}`}
+            >
+              {media}
+            </button>
+          )}
 
           {total > 1 ? (
             <>

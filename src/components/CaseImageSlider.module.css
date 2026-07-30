@@ -26,6 +26,12 @@
   background: transparent;
   cursor: zoom-in;
   text-align: left;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.media {
+  cursor: pointer;
 }
 
 .media:focus-visible {
