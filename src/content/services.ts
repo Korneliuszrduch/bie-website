@@ -250,6 +250,56 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
         answer:
           "Tak — w zakresie oferty są też pomiary fotowoltaiki, jeśli dotyczy instalacji. Po zmianach w instalacji sens mają aktualne pomiary.",
       },
+      {
+        question: "Ile trwa przegląd instalacji elektrycznej?",
+        answer:
+          "Czas przeglądu zależy od wielkości i rodzaju obiektu. W przypadku domu jednorodzinnego kontrola najczęściej trwa od 2 do 4 godzin. Po zakończeniu pomiarów przygotowujemy protokół z wynikami oraz zaleceniami.",
+      },
+      {
+        question: "Ile kosztuje przegląd instalacji elektrycznej?",
+        answer:
+          "Cena zależy od wielkości obiektu, liczby rozdzielnic, obwodów i punktów pomiarowych. Przed rozpoczęciem prac przygotowujemy bezpłatną wycenę, dlatego klient zna koszt usługi z wyprzedzeniem.",
+      },
+      {
+        question: "Czy po przeglądzie otrzymam protokół?",
+        answer:
+          "Tak. Każdy przegląd kończy się przygotowaniem protokołu z wynikami pomiarów, opisem stanu instalacji oraz wykazem ewentualnych usterek i zaleceń.",
+      },
+      {
+        question: "Jak często należy wykonywać przegląd instalacji elektrycznej?",
+        answer:
+          "W większości budynków okresową kontrolę instalacji elektrycznej wykonuje się co najmniej raz na 5 lat. W niektórych obiektach, szczególnie narażonych na trudne warunki środowiskowe, kontrole mogą być wymagane częściej.",
+      },
+      {
+        question: "Czy przegląd instalacji elektrycznej jest obowiązkowy?",
+        answer:
+          "Tak. Obowiązek okresowej kontroli instalacji elektrycznej wynika z art. 62 ust. 1 pkt 2 ustawy Prawo budowlane. Regularne przeglądy pomagają również wykrywać usterki, zanim doprowadzą do awarii lub zagrożenia.",
+      },
+      {
+        question: "Czy wykonujecie przeglądy dla firm i zakładów produkcyjnych?",
+        answer:
+          "Tak. Wykonujemy przeglądy w domach, biurach, wspólnotach mieszkaniowych, magazynach, halach produkcyjnych, zakładach przemysłowych oraz innych obiektach komercyjnych.",
+      },
+      {
+        question: "Czy podczas przeglądu trzeba wyłączyć prąd?",
+        answer:
+          "Przy części pomiarów może być konieczne krótkotrwałe wyłączenie zasilania. Zakres i czas przerw ustalamy wcześniej z klientem i staramy się ograniczyć je do niezbędnego minimum.",
+      },
+      {
+        question: "Czy można zamówić tylko pomiary elektryczne?",
+        answer:
+          "Tak. Wykonujemy również wybrane pomiary ochronne, pomiary do odbioru instalacji, pomiary wymagane przez ubezpieczyciela oraz kontrole wskazanych obwodów lub urządzeń.",
+      },
+      {
+        question: "Czy pomiary są wykonywane zgodnie z obowiązującymi przepisami?",
+        answer:
+          "Tak. Pomiary wykonujemy zgodnie z obowiązującymi przepisami i odpowiednimi normami, przy użyciu profesjonalnych mierników z aktualnymi świadectwami wzorcowania.",
+      },
+      {
+        question: "Na jakim obszarze działacie?",
+        answer:
+          "Obsługujemy klientów na terenie województwa śląskiego oraz w okolicznych miejscowościach. Dokładny termin i koszt dojazdu ustalamy podczas wyceny.",
+      },
     ],
     relatedServiceSlugs: [
       "przeglady-instalacji-elektrycznych",

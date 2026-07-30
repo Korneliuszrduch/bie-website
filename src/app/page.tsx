@@ -85,18 +85,26 @@ const STATS = [
   {
     value: "150+",
     label: "przeglądów instalacji z protokołem",
+    image: "/images/stats/stat-przeglady.png",
+    imageAlt: "Grafika: rozdzielnica elektryczna",
   },
   {
     value: "5+",
     label: "lat doświadczenia na Śląsku",
+    image: "/images/stats/stat-doswiadczenie.png",
+    imageAlt: "Grafika: doświadczenie w terenie",
   },
   {
     value: "Domy i firmy",
     label: "ten sam zakres pomiarów i dokumentacji",
+    image: "/images/stats/stat-domy-firmy.png",
+    imageAlt: "Grafika: dom i budynek firmowy",
   },
   {
     value: "Protokół",
     label: "pod ubezpieczyciela i przepisy (art. 62)",
+    image: "/images/stats/stat-protokol.png",
+    imageAlt: "Grafika: protokół z przeglądu",
   },
 ];
 
@@ -236,6 +244,16 @@ export default function HomePage() {
           <ul className={styles.stats}>
             {STATS.map((stat) => (
               <li key={stat.value} className={styles.stat}>
+                <div className={styles.statMedia}>
+                  <Image
+                    src={stat.image}
+                    alt={stat.imageAlt}
+                    width={320}
+                    height={200}
+                    sizes="(max-width: 800px) 45vw, 200px"
+                    className={styles.statImg}
+                  />
+                </div>
                 <p className={styles.statValue}>{stat.value}</p>
                 <p className={styles.statLabel}>{stat.label}</p>
               </li>
