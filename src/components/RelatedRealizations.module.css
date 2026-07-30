@@ -1,0 +1,52 @@
+.wrap {
+  margin: 2rem 0 0;
+}
+
+.head {
+  margin-bottom: 1rem;
+  max-width: 40rem;
+}
+
+.head h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.head p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.head a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.head a:hover,
+.head a:focus-visible {
+  text-decoration: underline;
+}
+
+.block {
+  margin-top: 1.25rem;
+}
+
+.sub {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+.sub a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.sub a:hover,
+.sub a:focus-visible {
+  text-decoration: underline;
+}

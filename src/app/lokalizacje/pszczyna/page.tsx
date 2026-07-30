@@ -1,12 +1,14 @@
 ﻿import Link from "next/link";
+import { LocationLead } from "@/components/LocationLead";
 import { PageShell } from "@/components/PageShell";
+import { RelatedRealizations } from "@/components/RelatedRealizations";
 import { getCompanyConfig } from "@/lib/env";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Przeglądy i pomiary elektryczne w Pszczynie",
   description:
-    "5-letni przegląd instalacji, pomiary i kompensacja mocy biernej w Pszczynie i okolicach. Protokół, wycena indywidualna.",
+    "5-letni przegląd instalacji, pomiary i kompensacja mocy biernej w Pszczynie i okolicach. Realizacje: sklep rybny, browar, Goczałkowice, Kozy.",
   path: "/lokalizacje/pszczyna",
 });
 
@@ -53,8 +55,8 @@ export default function PszczynaPage() {
 
       <h2>Dojazd</h2>
       <p>
-        Obsługujemy Pszczynę i okolice w ramach obszaru {company.serviceArea}.
-        Termin i dojazd ustalamy przy wycenie.
+        Obsługujemy Pszczynę i okolice (m.in. Goczałkowice-Zdrój, Kozy) w ramach
+        obszaru {company.serviceArea}. Termin i dojazd ustalamy przy wycenie.
       </p>
 
       <h2>FAQ — Pszczyna</h2>
@@ -72,17 +74,20 @@ export default function PszczynaPage() {
           {company.phoneSecondaryDisplay
             ? ` lub ${company.phoneSecondaryDisplay}`
             : ""}{" "}
-          albo napisz przez{" "}
-          <Link href="/kontakt?miasto=pszczyna">formularz kontaktowy</Link> z
-          wybranym miastem Pszczyna.
+          albo zostaw kontakt w formularzu poniżej.
         </p>
       </details>
 
-      <h2>Powiązane realizacje</h2>
-      <p>
-        Lista realizacji regionalnych pojawi się po dostarczeniu materiałów — na
-        stagingu nie publikujemy fikcyjnych case studies.
-      </p>
+      <RelatedRealizations
+        locationSlug="pszczyna"
+        heading="Realizacje w Pszczynie i okolicach"
+      />
+
+      <LocationLead
+        cityName="Pszczyna"
+        defaultCity="Pszczyna"
+        defaultService="przeglad"
+      />
     </PageShell>
   );
 }
