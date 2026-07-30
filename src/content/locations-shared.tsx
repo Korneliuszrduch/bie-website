@@ -1,4 +1,6 @@
 import { PageShell } from "@/components/PageShell";
+import { LocationLead } from "@/components/LocationLead";
+import { RelatedRealizations } from "@/components/RelatedRealizations";
 import { getCompanyConfig } from "@/lib/env";
 import { buildPageMetadata } from "@/lib/seo";
 import Link from "next/link";
@@ -8,6 +10,8 @@ type Loc = {
   name: string;
   locative: string;
   h1: string;
+  /** When true, page can be indexed (has unique content / realizations). */
+  indexable?: boolean;
 };
 
 const LOC: Record<string, Loc> = {
@@ -39,7 +43,36 @@ const LOC: Record<string, Loc> = {
     slug: "gliwice",
     name: "Gliwice",
     locative: "Gliwicach",
-    h1: "Usługi elektryczne w Gliwicach",
+    h1: "Przeglądy i usługi elektryczne w Gliwicach",
+    indexable: true,
+  },
+  sosnicowice: {
+    slug: "sosnicowice",
+    name: "Sośnicowice",
+    locative: "Sośnicowicach",
+    h1: "Przeglądy instalacji elektrycznych w Sośnicowicach",
+    indexable: true,
+  },
+  zabrze: {
+    slug: "zabrze",
+    name: "Zabrze",
+    locative: "Zabrzu",
+    h1: "Kompensacja mocy biernej i przeglądy w Zabrzu",
+    indexable: true,
+  },
+  "dabrowa-gornicza": {
+    slug: "dabrowa-gornicza",
+    name: "Dąbrowa Górnicza",
+    locative: "Dąbrowie Górniczej",
+    h1: "Kompensacja mocy biernej w Dąbrowie Górniczej",
+    indexable: true,
+  },
+  sosnowiec: {
+    slug: "sosnowiec",
+    name: "Sosnowiec",
+    locative: "Sosnowcu",
+    h1: "Kompensacja mocy biernej w Sosnowcu",
+    indexable: true,
   },
 };
 
@@ -80,18 +113,19 @@ function LocationBody({ loc }: { loc: Loc }) {
         Dojeżdżamy do {loc.locative} z obszaru Pszczyna / {company.serviceArea}.
         Termin ustalamy indywidualnie.
       </p>
-      <h2>Kontakt</h2>
-      <p>
-        <Link href={`/kontakt?miasto=${loc.slug}`}>
-          Formularz z miastem {loc.name}
-        </Link>
-      </p>
-      <p>
-        <em>
-          Strona lokalna ma na razie ograniczoną unikalną treść — meta robots:
-          noindex do czasu rozbudowy.
-        </em>
-      </p>
+
+      <RelatedRealizations locationSlug={loc.slug} />
+
+      <LocationLead cityName={loc.name} defaultCity={loc.name} />
+
+      {!loc.indexable ? (
+        <p>
+          <em>
+            Strona lokalna ma na razie ograniczoną unikalną treść — meta robots:
+            noindex do czasu rozbudowy.
+          </em>
+        </p>
+      ) : null}
     </PageShell>
   );
 }
@@ -109,6 +143,6 @@ export function makeLocationMetadata(slug: keyof typeof LOC) {
     title: loc.h1,
     description: `Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy biernej — ${loc.name} i okolice.`,
     path: `/lokalizacje/${loc.slug}`,
-    noIndex: true,
+    noIndex: !loc.indexable,
   });
 }

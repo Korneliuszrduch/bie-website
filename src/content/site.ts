@@ -100,6 +100,30 @@ export const LOCATIONS: LocationSummary[] = [
     hasUniqueContent: true,
   },
   {
+    slug: "zabrze",
+    name: "Zabrze",
+    href: "/lokalizacje/zabrze",
+    hasUniqueContent: true,
+  },
+  {
+    slug: "dabrowa-gornicza",
+    name: "Dąbrowa Górnicza",
+    href: "/lokalizacje/dabrowa-gornicza",
+    hasUniqueContent: true,
+  },
+  {
+    slug: "sosnowiec",
+    name: "Sosnowiec",
+    href: "/lokalizacje/sosnowiec",
+    hasUniqueContent: true,
+  },
+  {
+    slug: "sosnicowice",
+    name: "Sośnicowice",
+    href: "/lokalizacje/sosnicowice",
+    hasUniqueContent: true,
+  },
+  {
     slug: "tychy",
     name: "Tychy",
     href: "/lokalizacje/tychy",
@@ -127,7 +151,7 @@ export const LOCATIONS: LocationSummary[] = [
     slug: "gliwice",
     name: "Gliwice",
     href: "/lokalizacje/gliwice",
-    hasUniqueContent: false,
+    hasUniqueContent: true,
   },
 ];
 
