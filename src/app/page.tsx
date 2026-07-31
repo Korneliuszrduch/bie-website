@@ -13,7 +13,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import styles from "./home.module.css";
 
 export const metadata = buildPageMetadata({
-  title: "Przeglądy instalacji elektrycznych i pomiary",
+  title: "Przeglądy instalacji elektrycznych – Śląsk",
   description:
     "5-letni przegląd instalacji z protokołem, pomiary elektryczne i kompensacja mocy biernej na Śląsku.",
   path: "/",

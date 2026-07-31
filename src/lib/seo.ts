@@ -7,12 +7,18 @@ import {
 } from "@/lib/env";
 
 export type PageSeoInput = {
+  /** Document title as shown in SERP — do not rely on auto brand suffix. */
   title: string;
   description: string;
   path: string;
   /** Force noindex even in production (e.g. thin location pages). */
   noIndex?: boolean;
   ogImage?: string;
+  /**
+   * When true, append ` | {company.name}` if the title does not already include it.
+   * Prefer for home / kontakt / o-firmie only.
+   */
+  includeBrand?: boolean;
 };
 
 function absoluteUrl(path: string): string {
@@ -59,8 +65,8 @@ export function productionRobotsMeta(noIndex = false): Metadata["robots"] {
 }
 
 /**
- * Builds page metadata with a single brand suffix.
- * Uses `title.absolute` so root `title.template` cannot double-append the company name.
+ * Builds page metadata. Uses `title.absolute` so root `title.template`
+ * cannot append a second brand. Brand suffix is opt-in via `includeBrand`.
  */
 export function buildPageMetadata({
   title,
@@ -68,14 +74,15 @@ export function buildPageMetadata({
   path,
   noIndex = false,
   ogImage,
+  includeBrand = false,
 }: PageSeoInput): Metadata {
   const company = getCompanyConfig();
   const canonical = absoluteUrl(path);
-  const fullTitle = title.includes(company.name)
-    ? title
-    : `${title} | ${company.name}`;
+  const fullTitle =
+    includeBrand && !title.includes(company.name)
+      ? `${title} | ${company.name}`
+      : title;
 
-  // Staging lock vs production thin noindex must stay separate.
   const robots =
     isStaging() || !isIndexingAllowed()
       ? stagingRobotsMeta()
@@ -112,9 +119,9 @@ export function defaultRootMetadata(): Metadata {
   return {
     metadataBase: rootMetadataBase(),
     title: {
-      default: `Przeglądy instalacji elektrycznych | ${company.name}`,
-      // Fallback only for pages that do not use buildPageMetadata / absolute titles.
-      template: `%s | ${company.name}`,
+      default: `Przeglądy instalacji elektrycznych – Śląsk`,
+      // Fallback for rare pages without buildPageMetadata — keep short, no brand spam.
+      template: `%s`,
     },
     description:
       "Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy biernej na Śląsku. Umów przegląd lub zamów wycenę.",

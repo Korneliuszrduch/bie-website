@@ -8,7 +8,7 @@ import { faqPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Przeglądy elektryczne w Pszczynie",
+  title: "Przeglądy elektryczne Pszczyna",
   description:
     "5-letni przegląd instalacji, pomiary i kompensacja mocy biernej w Pszczynie i okolicach. Realizacje: sklep rybny, browar, Goczałkowice, Kozy.",
   path: "/lokalizacje/pszczyna",

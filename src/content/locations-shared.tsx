@@ -140,7 +140,7 @@ export function makeLocationMetadata(slug: keyof typeof LOC) {
   const loc = LOC[slug];
   return buildPageMetadata({
     // Keep visible H1 as-is; use a shorter keyword-first document title.
-    title: `Przeglądy elektryczne – ${loc.name}`,
+    title: `Przeglądy elektryczne ${loc.name}`,
     description: `Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy biernej — ${loc.name} i okolice.`,
     path: `/lokalizacje/${loc.slug}`,
     noIndex: !loc.indexable,

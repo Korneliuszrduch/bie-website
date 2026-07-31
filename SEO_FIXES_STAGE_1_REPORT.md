@@ -286,7 +286,6 @@ Wire corresponding GTM tags/triggers in the container (not done in this stage).
 - Doorway-risk unique copy for template cities  
 - Expanding thin services before indexing  
 - Windows-friendly `package.json` build script (`cross-env`)  
-- Lighthouse lab scores  
 
 ---
 
@@ -297,7 +296,8 @@ Wire corresponding GTM tags/triggers in the container (not done in this stage).
 3. **WebP:** ensure hosting serves `image/webp` (LiteSpeed usually OK). Keep JPG fallbacks on disk.  
 4. **Sitemap shrink** may show as “removed URLs” in GSC temporarily — expected.  
 5. **`/poradnik` noindex** — confirm stakeholders OK until articles exist.  
-6. Local `.env.local` staging can mask production robots during local builds — verify with `SITE_ENV=production`.
+6. Local `.env.local` staging can mask production robots during local builds — verify with `SITE_ENV=production`.  
+7. **Local Lighthouse ≠ production CDN/cache** — lab scores below are from `next start` on localhost; real hosting, HTTP/2, and cold vs warm cache will differ (especially Performance / LCP / TBT).
 
 ---
 
@@ -321,11 +321,128 @@ Wire corresponding GTM tags/triggers in the container (not done in this stage).
 
 ---
 
-## 12. Summary checklist for requester
+## 12. Final QA (2026-07-31) — pre-commit polish
+
+**Environment:** local `next build --webpack` + `next start -p 3012` with `SITE_ENV=production`, `NEXT_PUBLIC_SITE_URL=https://bezpieczneinstalacjeelektryczne.pl`.  
+**Production server:** not restarted, not deployed.
+
+### 12.1 Final title table (rendered HTML)
+
+Brand suffix (`| Bezpieczne Instalacje Elektryczne`) is **opt-in** via `includeBrand` — used only on `/kontakt` and `/o-firmie`. Home and service pages use query-focused titles without the full company name.
+
+| URL | title | length |
+|-----|-------|--------|
+| `/` | Przeglądy instalacji elektrycznych – Śląsk | 42 |
+| `/uslugi` | Usługi elektryczne – przeglądy i pomiary | 40 |
+| `/uslugi/przeglady-instalacji-elektrycznych` | 5-letni przegląd instalacji elektrycznej | 40 |
+| `/uslugi/pomiary-elektryczne` | Pomiary elektryczne instalacji – Śląsk | 38 |
+| `/uslugi/przeglady-elektryczne-domow` | Przegląd instalacji elektrycznej w domu | 39 |
+| `/uslugi/przeglady-elektryczne-firm` | Przeglądy elektryczne firm i zakładów | 37 |
+| `/uslugi/kompensacja-mocy-biernej` | Kompensacja mocy biernej – dobór i montaż | 41 |
+| `/uslugi/analiza-jakosci-energii` | Analiza jakości energii | 23 |
+| `/uslugi/modernizacja-rozdzielnic` | Modernizacja rozdzielnic elektrycznych | 38 |
+| `/uslugi/ochrona-przeciwprzepieciowa` | Ochrona przeciwprzepięciowa | 27 |
+| `/uslugi/magazyny-energii` | Magazyny energii | 16 |
+| `/uslugi/systemy-ems` | Systemy EMS | 11 |
+| `/lokalizacje` | Lokalizacje – przeglądy na Śląsku | 33 |
+| `/lokalizacje/pszczyna` | Przeglądy elektryczne Pszczyna | 30 |
+| `/lokalizacje/tychy` | Przeglądy elektryczne Tychy | 27 |
+| `/kontakt` | Kontakt – umów przegląd \| Bezpieczne Instalacje Elektryczne | 59 |
+| `/o-firmie` | O firmie \| Bezpieczne Instalacje Elektryczne | 44 |
+| `/poradnik` | Poradnik | 8 |
+| `/realizacje` | Realizacje | 10 |
+| `/realizacje/kompensacja-mocy-biernej` | Realizacje: Kompensacja mocy biernej | 36 |
+| `/realizacje/przeglady-instalacji-elektrycznych` | Realizacje: Przeglądy instalacji elektrycznych | 46 |
+| `/terminy` | Umów termin przeglądu instalacji | 32 |
+
+Lengths counted as Unicode code points (Polish characters = 1). Core money pages sit ~37–42 chars (slightly under 45–65 band but keyword-clear and without brand spam). Kontakt/o-firmie keep full brand and stay readable (44–59).
+
+### 12.2 JSON-LD graph
+
+**Single business entity**
+
+- `@type`: `["Electrician","LocalBusiness","Organization"]`
+- `@id`: `https://bezpieczneinstalacjeelektryczne.pl/#business`
+- Emitted once in root layout via `businessJsonLd()`
+- `WebSite` `@id`: `…/#website`, `publisher`: `{ "@id": "…/#business" }`
+- `Service.provider`: `{ "@id": "…/#business" }` on service pages
+- `BreadcrumbList` / `FAQPage` as page-level nodes
+- No separate duplicate Organization / Electrician nodes
+- No `Review` / `AggregateRating`
+
+**Validation:** `JSON.parse` of every `application/ld+json` block on `/`, przeglądy, kompensacja, `/kontakt` — **PASS**. Checks: `publisherOk`, `providersOk`, `singleBusiness`, `hasReview=false`.
+
+### 12.3 Images (local production)
+
+HTTP check of **24** unique `.webp` refs from home + realizacje pages: **all 200**, `BAD_COUNT=0`.  
+Also OK: `kompensator_goczalkowice_zdroj.jpg`, `kompensator_panele_zabrze_.jpg`.
+
+Checked surfaces: home stats, realizacje przeglądy, realizacje kompensacja, gallery/slider thumbs. No broken WebP refs in HTML. Alts come from existing content models (unchanged in this polish). Aspect ratios use existing `next/image` / CSS object-fit patterns — no stretch CSS added. Technical detail shots remain WebP with quality from optimize script (readable in prior stage).
+
+### 12.4 Lighthouse (local lab)
+
+Tool: `lighthouse@12.2.1`, Chrome headless, against `http://127.0.0.1:3012`.  
+**Note:** local Node server ≠ production CDN; scores are indicative only.
+
+#### Mobile (default form factor)
+
+| Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+|------|------|------|----|-----|-----|-----|-----|
+| `/` | 56 | 96 | 100 | 100 | 3.6 s | 0 | 1,710 ms |
+| `/uslugi/przeglady-instalacji-elektrycznych` | 71 | 100 | 100 | 100 | 2.2 s | 0.142 | 880 ms |
+| `/uslugi/kompensacja-mocy-biernej` | 75 | 100 | 100 | 100 | 2.9 s | 0.001 | 760 ms |
+| `/kontakt` | 74 | 100 | 100 | 100 | 2.2 s | 0.001 | 1,050 ms |
+
+#### Desktop (`--preset=desktop`)
+
+| Page | Perf | A11y | BP | SEO | LCP | CLS | TBT |
+|------|------|------|----|-----|-----|-----|-----|
+| `/` | 87 | 96 | 100 | 100 | 1.1 s | 0.001 | 240 ms |
+| `/uslugi/przeglady-instalacji-elektrycznych` | 96 | 100 | 100 | 100 | 0.9 s | 0.001 | 140 ms |
+| `/uslugi/kompensacja-mocy-biernej` | 96 | 100 | 100 | 100 | 0.9 s | 0.001 | 130 ms |
+| `/kontakt` | 60 | 100 | 100 | 100 | 1.2 s | 0.001 | 1,340 ms |
+
+SEO category **100** on all four URLs in both modes. Performance variance (home mobile TBT/LCP, kontakt desktop TBT) should be re-checked on production after deploy — not blockers for stage-1 SEO ship.
+
+### 12.5 Technical checks
+
+| Check | Result |
+|-------|--------|
+| `npx tsc --noEmit` | PASS |
+| `eslint` | PASS |
+| `next build --webpack` (`SITE_ENV=production`) | PASS |
+| HTML title / description / canonical / robots / H1 | Verified on key URLs via local prod HTML |
+| JSON-LD in HTML | Present + parse OK |
+| WebP refs | 24/24 HTTP 200 |
+
+### 12.6 Git commit (this polish)
+
+- **Message:** `SEO technical fixes stage 1`
+- **Hash:** _(see git after commit; updated in-repo immediately after)_
+- **Files in this polish commit (expected):**
+  - `SEO_FIXES_STAGE_1_REPORT.md`
+  - `src/app/kontakt/page.tsx`
+  - `src/app/layout.tsx`
+  - `src/app/lokalizacje/page.tsx`
+  - `src/app/lokalizacje/pszczyna/page.tsx`
+  - `src/app/o-firmie/page.tsx`
+  - `src/app/page.tsx`
+  - `src/app/realizacje/[slug]/page.tsx`
+  - `src/content/locations-shared.tsx`
+  - `src/content/services.ts`
+  - `src/lib/jsonld.ts`
+  - `src/lib/seo.ts`
+- **Excluded from commit:** `.env*`, `_originals/`, tokens, Lighthouse JSON temp, QA scratch scripts
+- **Merge to main:** not done  
+- **Production changed:** **NO**
+
+---
+
+## 13. Summary checklist for requester
 
 1. **Git branch:** `seo-technical-fixes-stage-1`  
-2. **Changed files:** ~45 paths (26 tracked diffs + new components/scripts/WebPs + audit md untracked)  
-3. **Build:** PASS (`next build --webpack`, prod env)  
-4. **Lint:** PASS  
+2. **Ready to deploy:** yes (after host rebuild + smoke)  
+3. **Build / lint / tsc:** PASS  
+4. **Commit created:** yes (see §12.6)  
 5. **Deployed to production:** **NO**  
 6. **Report path:** `c:\dev\bie-website\SEO_FIXES_STAGE_1_REPORT.md`

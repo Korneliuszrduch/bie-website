@@ -173,7 +173,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "pomiary-elektryczne": {
     slug: "pomiary-elektryczne",
     title: "Pomiary elektryczne",
-    metaTitle: "Pomiary elektryczne instalacji",
+    metaTitle: "Pomiary elektryczne instalacji – Śląsk",
     metaDescription:
       "Pomiary elektryczne instalacji: rezystancja izolacji, uziemienie, ciągłość PE, SWZ, test RCD. Protokół z wynikami. Śląsk.",
     h1: "Pomiary elektryczne instalacji",
@@ -218,7 +218,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "przeglady-elektryczne-domow": {
     slug: "przeglady-elektryczne-domow",
     title: "Przeglądy elektryczne domów",
-    metaTitle: "Przegląd elektryczny domu",
+    metaTitle: "Przegląd instalacji elektrycznej w domu",
     metaDescription:
       "5-letni przegląd instalacji elektrycznej w domu: pomiary, protokół, zalecenia. Dla właścicieli domów na Śląsku.",
     h1: "Przeglądy elektryczne domów",
@@ -317,7 +317,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "przeglady-elektryczne-firm": {
     slug: "przeglady-elektryczne-firm",
     title: "Przeglądy elektryczne firm",
-    metaTitle: "Przeglądy elektryczne firm",
+    metaTitle: "Przeglądy elektryczne firm i zakładów",
     metaDescription:
       "Przeglądy instalacji w firmach oraz przegląd elektryczny maszyn z protokołem. Pomiary, zabezpieczenia, dokumentacja.",
     h1: "Przeglądy elektryczne firm",
@@ -377,7 +377,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "kompensacja-mocy-biernej": {
     slug: "kompensacja-mocy-biernej",
     title: "Kompensacja mocy biernej",
-    metaTitle: "Kompensacja mocy biernej",
+    metaTitle: "Kompensacja mocy biernej – dobór i montaż",
     metaDescription:
       "Analiza faktur za energię pod kątem mocy biernej i dobór kompensatora SVG. W wielu przypadkach można wyeliminować ten koszt. Śląsk.",
     h1: "Kompensacja mocy biernej",

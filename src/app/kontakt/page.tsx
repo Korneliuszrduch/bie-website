@@ -8,6 +8,7 @@ import styles from "./kontakt.module.css";
 
 export const metadata = buildPageMetadata({
   title: "Kontakt – umów przegląd",
+  includeBrand: true,
   description:
     "Umów 5-letni przegląd instalacji, zamów wycenę lub wyślij faktury do analizy mocy biernej.",
   path: "/kontakt",

@@ -2,6 +2,11 @@ import { getCompanyConfig, getSiteUrl } from "@/lib/env";
 
 export type JsonLd = Record<string, unknown>;
 
+/** Stable graph id for the single business entity on this site. */
+export function businessEntityId(): string {
+  return `${getSiteUrl()}/#business`;
+}
+
 export function absoluteUrl(path = "/"): string {
   const base = getSiteUrl();
   if (!path || path === "/") return base;
@@ -13,37 +18,10 @@ export function serializeJsonLd(data: JsonLd | JsonLd[]): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-export function organizationJsonLd(): JsonLd {
-  const company = getCompanyConfig();
-  const url = getSiteUrl();
-  const sameAs = [
-    company.googleReviewsUrl,
-    company.googleReviewUrl,
-    company.facebookPostUrl,
-  ].filter(Boolean);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${url}/#organization`,
-    name: company.name,
-    legalName: company.legalName || undefined,
-    url,
-    email: company.email || undefined,
-    telephone: company.phone ? `+48${company.phone.replace(/\s/g, "")}` : undefined,
-    taxID: company.nip || undefined,
-    address: postalAddressFromConfig(),
-    sameAs: sameAs.length ? sameAs : undefined,
-  };
-}
-
 function postalAddressFromConfig(): JsonLd | undefined {
   const company = getCompanyConfig();
   if (!company.address) return undefined;
-  // Address string from site config, e.g. "ul. Borowikowa 3E/4, 43-215 Jankowice"
-  const match = company.address.match(
-    /^(.*?),\s*(\d{2}-\d{3})\s+(.+)$/,
-  );
+  const match = company.address.match(/^(.*?),\s*(\d{2}-\d{3})\s+(.+)$/);
   if (match) {
     return {
       "@type": "PostalAddress",
@@ -60,28 +38,48 @@ function postalAddressFromConfig(): JsonLd | undefined {
   };
 }
 
-export function electricianJsonLd(): JsonLd {
+/**
+ * One firm entity: Electrician + LocalBusiness + Organization, shared @id.
+ * Used by WebSite.publisher and Service.provider.
+ */
+export function businessJsonLd(): JsonLd {
   const company = getCompanyConfig();
   const url = getSiteUrl();
-  const orgId = `${url}/#organization`;
+  const sameAs = [
+    company.googleReviewsUrl,
+    company.googleReviewUrl,
+    company.facebookPostUrl,
+  ].filter((value, index, arr) => Boolean(value) && arr.indexOf(value) === index);
 
   return {
     "@context": "https://schema.org",
-    "@type": "Electrician",
-    "@id": `${url}/#localbusiness`,
+    "@type": ["Electrician", "LocalBusiness", "Organization"],
+    "@id": businessEntityId(),
     name: company.name,
     legalName: company.legalName || undefined,
     url,
     email: company.email || undefined,
-    telephone: company.phone ? `+48${company.phone.replace(/\s/g, "")}` : undefined,
+    telephone: company.phone
+      ? `+48${company.phone.replace(/\s/g, "")}`
+      : undefined,
+    taxID: company.nip || undefined,
     image: absoluteUrl("/images/hero-main.jpg"),
-    parentOrganization: { "@id": orgId },
     address: postalAddressFromConfig(),
     areaServed: company.serviceArea
       ? { "@type": "AdministrativeArea", name: company.serviceArea }
       : undefined,
-    sameAs: company.googleReviewsUrl ? [company.googleReviewsUrl] : undefined,
+    sameAs: sameAs.length ? sameAs : undefined,
   };
+}
+
+/** @deprecated Use businessJsonLd — kept as alias for clear call sites. */
+export function organizationJsonLd(): JsonLd {
+  return businessJsonLd();
+}
+
+/** @deprecated Use businessJsonLd — single entity replaces separate Electrician node. */
+export function electricianJsonLd(): JsonLd {
+  return businessJsonLd();
 }
 
 export function webSiteJsonLd(): JsonLd {
@@ -94,7 +92,7 @@ export function webSiteJsonLd(): JsonLd {
     name: company.name,
     url,
     inLanguage: "pl-PL",
-    publisher: { "@id": `${url}/#organization` },
+    publisher: { "@id": businessEntityId() },
   };
 }
 
@@ -124,14 +122,14 @@ export function serviceJsonLd(input: {
   path: string;
 }): JsonLd {
   const company = getCompanyConfig();
-  const url = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${absoluteUrl(input.path)}#service`,
     name: input.name,
     description: input.description,
     url: absoluteUrl(input.path),
-    provider: { "@id": `${url}/#localbusiness` },
+    provider: { "@id": businessEntityId() },
     areaServed: company.serviceArea
       ? { "@type": "AdministrativeArea", name: company.serviceArea }
       : undefined,

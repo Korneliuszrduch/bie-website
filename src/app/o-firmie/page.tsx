@@ -7,6 +7,7 @@ import styles from "./o-firmie.module.css";
 
 export const metadata = buildPageMetadata({
   title: "O firmie",
+  includeBrand: true,
   description:
     "mgr inż. elektryk Korneliusz Rduch — przeglądy pomiarowe, pomiary i kompensacja mocy biernej na Śląsku. Kwalifikacje: Politechnika Śląska, uprawnienia SEP.",
   path: "/o-firmie",

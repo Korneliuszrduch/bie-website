@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./lokalizacje.module.css";
 
 export const metadata = buildPageMetadata({
-  title: "Lokalizacje – Pszczyna i Śląsk",
+  title: "Lokalizacje – przeglądy na Śląsku",
   description:
     "Przeglądy i kompensacja mocy biernej w Pszczynie, Zabrzu, Dąbrowie Górniczej, Sosnowcu i innych miastach Śląska.",
   path: "/lokalizacje",
