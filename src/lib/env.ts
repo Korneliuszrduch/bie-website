@@ -102,13 +102,22 @@ export function getCompanyConfig() {
     ),
     calibrationPdfUrl: readEnv(
       "NEXT_PUBLIC_CALIBRATION_PDF_URL",
-      "https://bezpieczneinstalacjeelektryczne.pl/wp-content/uploads/2026/04/swiadectwo_wzorcowania.pdf",
+      "/images/uprawnienia/swiadectwo-wzorcowania.pdf",
     ),
     facebookPostUrl: readEnv(
       "NEXT_PUBLIC_FACEBOOK_POST_URL",
       "https://www.facebook.com/photo/?fbid=122145789008779573&set=a.122145789620779573",
     ),
+    googleAppointmentsUrl: readEnv(
+      "NEXT_PUBLIC_GOOGLE_APPOINTMENTS_URL",
+      "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2t_FM-bXLzPEfvgexpL9hIh0fAwY-_OL3CsQXyq4-sE5hh-KXS7Uzxe5Gpf5xheXLJV10Ili6d?gv=true",
+    ),
   };
+}
+
+/** Google Calendar Appointment Scheduling embed URL (same schedule as WP /terminy). */
+export function getGoogleAppointmentsEmbedUrl(): string {
+  return getCompanyConfig().googleAppointmentsUrl;
 }
 
 export function isBasicAuthEnabled(): boolean {

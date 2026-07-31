@@ -75,6 +75,9 @@ export function Footer() {
               <Link href="/o-firmie">O firmie</Link>
             </li>
             <li>
+              <Link href="/terminy">Umów termin przeglądu</Link>
+            </li>
+            <li>
               <Link href="/kontakt">Kontakt</Link>
             </li>
             <li>

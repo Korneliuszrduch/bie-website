@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isLegacyGonePath } from "@/lib/legacyRedirects";
 import { X_ROBOTS_TAG_STAGING } from "@/lib/seo";
 
 function configuredSiteEnv(): "staging" | "production" {
@@ -61,6 +62,11 @@ export function middleware(request: NextRequest) {
   // Always attach noindex headers on staging (including robots.txt / sitemap).
   const respond = (res: NextResponse) =>
     staging ? withStagingHeaders(res) : res;
+
+  // Obsolete WP URLs (shop, payment-terminal blog, etc.)
+  if (isLegacyGonePath(pathname)) {
+    return respond(new NextResponse("Gone", { status: 410 }));
+  }
 
   // Never serve private source materials (signed protocols, drafts) from /public.
   // Allow only intentionally published PDFs under /images/uprawnienia/.

@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/poradnik",
     "/lokalizacje",
     "/o-firmie",
+    "/terminy",
     "/kontakt",
     "/polityka-prywatnosci",
   ];

@@ -175,11 +175,13 @@ export const MAIN_NAV: NavItem[] = [
     children: LOCATIONS.map((l) => ({ href: l.href, label: l.name })),
   },
   { href: "/o-firmie", label: "O firmie" },
+  { href: "/terminy", label: "Terminy" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
 export const CTA_LINKS = {
   review: { href: "/kontakt", label: "Wypełnij formularz kontaktowy" },
+  book: { href: "/terminy", label: "Umów termin przeglądu" },
   quote: { href: "/kontakt?temat=wycena", label: "Zamów wycenę" },
   invoice: {
     href: "/kontakt?temat=analiza-faktury",
