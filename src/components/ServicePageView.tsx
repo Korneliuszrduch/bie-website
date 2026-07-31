@@ -99,10 +99,6 @@ export function ServicePageView({ service }: Props) {
             )}
             <li>
               <Link href="/realizacje">Realizacje</Link>
-              <span className={styles.muted}>
-                {" "}
-                (na stagingu wyłącznie dane demo)
-              </span>
             </li>
             <li>
               <Link href="/poradnik">Poradnik</Link>

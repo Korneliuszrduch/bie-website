@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { Header } from "@/components/Header";
 import { StagingBanner } from "@/components/StagingBanner";
 import { defaultRootMetadata } from "@/lib/seo";
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className={`${ibmPlexSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
+        <GoogleTagManager />
         <StagingBanner />
         <Header />
         {children}

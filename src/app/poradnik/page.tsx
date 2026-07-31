@@ -1,10 +1,11 @@
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Poradnik",
   description:
-    "Artykuły o przeglądach instalacji, pomiarach elektrycznych i kompensacji mocy biernej.",
+    "Praktyczne informacje o przeglądach instalacji, pomiarach elektrycznych i kompensacji mocy biernej.",
   path: "/poradnik",
 });
 
@@ -12,10 +13,30 @@ export default function PoradnikPage() {
   return (
     <PageShell
       title="Poradnik"
-      lead="System artykułów (MDX) zostanie dodany w etapie 3. Tutaj pojawi się lista wpisów z datą, kategorią i powiązaną usługą."
+      lead="Najważniejsze odpowiedzi o przeglądach, pomiarach i kompensacji mocy biernej znajdziesz na stronach usług oraz w FAQ."
       crumbs={[{ label: "Poradnik" }]}
     >
-      <p>Brak opublikowanych artykułów na etapie 1.</p>
+      <p>
+        Zacznij od:
+      </p>
+      <ul>
+        <li>
+          <Link href="/uslugi/przeglady-instalacji-elektrycznych">
+            Przeglądy instalacji elektrycznych
+          </Link>
+        </li>
+        <li>
+          <Link href="/uslugi/pomiary-elektryczne">Pomiary elektryczne</Link>
+        </li>
+        <li>
+          <Link href="/uslugi/kompensacja-mocy-biernej">
+            Kompensacja mocy biernej
+          </Link>
+        </li>
+        <li>
+          <Link href="/kontakt">Kontakt / wycena</Link>
+        </li>
+      </ul>
     </PageShell>
   );
 }

@@ -14,7 +14,7 @@ export default function PolitykaPage() {
   return (
     <PageShell
       title="Polityka prywatności"
-      lead="Skrócona wersja na potrzeby stagingu. Przed produkcją zweryfikujemy treść prawną."
+      lead="Informacje o przetwarzaniu danych osobowych w związku z formularzem kontaktowym i stroną internetową."
       crumbs={[{ label: "Polityka prywatności" }]}
       showCta={false}
     >

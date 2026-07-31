@@ -27,9 +27,6 @@ export default function UslugiPage() {
               <Link href={`/uslugi/${s.slug}`}>{s.title}</Link>
             </h2>
             <p>{s.lead}</p>
-            {s.thinContent ? (
-              <p className={styles.badge}>Treść skrócona — rozbudowa później</p>
-            ) : null}
           </li>
         ))}
       </ul>

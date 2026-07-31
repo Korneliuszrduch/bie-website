@@ -66,12 +66,7 @@ function CaseCopy({
             </>
           ) : null}
         </dl>
-      ) : (
-        <p className={styles.casePending}>
-          Opis realizacji (problem / rozwiązanie / efekt) uzupełnimy po zebraniu
-          szczegółów od klienta.
-        </p>
-      )}
+      ) : null}
     </div>
   );
 }

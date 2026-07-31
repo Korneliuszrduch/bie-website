@@ -36,15 +36,29 @@ NEXT_PUBLIC_GOOGLE_APPOINTMENTS_URL=https://calendar.google.com/calendar/appoint
 
 `nowa.*` zostaje stagingiem (hard-lock noindex w middleware).
 
-## Kolejność cutoveru DNS
+## Aderlo / DirectAdmin — Setup Node.js App
+
+| Pole | Wartość |
+|------|---------|
+| Wersja Node.js | **20.x** jeśli jest na liście (Next 16); unikaj samej 18 |
+| Tryb aplikacji | **Production** |
+| Katalog główny | `bie-website` (**nie** `public_html`) |
+| URL aplikacji | `bezpieczneinstalacjeelektryczne.pl/` (puste pole ścieżki) |
+| Plik startowy | `server.js` |
+
+Zmienne: `NEXT_PUBLIC_SITE_URL`, `SITE_ENV=production`, `BASIC_AUTH_ENABLED=false`, CRM/Netsendo jak w `.env.example`.
+
+Po CREATE: wgraj projekt do `bie-website` → Terminal: `npm ci` && `npm run build` → **Restart** w panelu Node.
+
+URL = apex przejmuje domenę od WP — najpierw backup `public_html`.
+
+## Kolejność cutoveru
 
 1. Backup WP (pliki + DB).
-2. Deploy Next (`npm run build`, PM2/systemd) na VPS.
-3. Nginx/Caddy: apex + `www` → Node, SSL; `www` → apex.
-4. Przełącz DNS A/AAAA na ten host.
-5. Smoke: `/`, `/terminy`, `/kontakt`, lead → CRM, PDF-y.
-6. GSC: sitemap; GBP: URL strony.
-7. `curl -sI` na kilka starych ścieżek (301/410).
+2. Setup Node.js App + upload + build + restart.
+3. Smoke: `/`, `/terminy`, `/kontakt`, lead → CRM, PDF-y, stare 301.
+4. GSC sitemap + GBP.
+5. WP w `public_html` → rename do backupu.
 
 ## Smoke lokalnie
 

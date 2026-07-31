@@ -26,9 +26,7 @@ export default function LokalizacjePage() {
             </Link>
             {loc.hasUniqueContent ? (
               <span className={styles.badge}>realizacje + formularz</span>
-            ) : (
-              <span className={styles.muted}>treść skrócona (noindex)</span>
-            )}
+            ) : null}
           </li>
         ))}
       </ul>

@@ -125,15 +125,6 @@ function LocationBody({ loc }: { loc: Loc }) {
       <RelatedRealizations locationSlug={loc.slug} />
 
       <LocationLead cityName={loc.name} defaultCity={loc.name} />
-
-      {!loc.indexable ? (
-        <p>
-          <em>
-            Strona lokalna ma na razie ograniczoną unikalną treść — meta robots:
-            noindex do czasu rozbudowy.
-          </em>
-        </p>
-      ) : null}
     </PageShell>
   );
 }
