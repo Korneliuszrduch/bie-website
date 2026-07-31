@@ -418,8 +418,8 @@ SEO category **100** on all four URLs in both modes. Performance variance (home 
 ### 12.6 Git commit (this polish)
 
 - **Message:** `SEO technical fixes stage 1`
-- **Hash:** _(see git after commit; updated in-repo immediately after)_
-- **Files in this polish commit (expected):**
+- **Hash:** `bd5cd3b96900a9e41396e03c0c46f63fa0f81c86` (`bd5cd3b`)
+- **Files in commit `bd5cd3b`:**
   - `SEO_FIXES_STAGE_1_REPORT.md`
   - `src/app/kontakt/page.tsx`
   - `src/app/layout.tsx`
