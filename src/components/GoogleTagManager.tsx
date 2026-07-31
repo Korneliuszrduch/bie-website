@@ -1,14 +1,41 @@
+"use client";
+
 import Script from "next/script";
-import { isStaging } from "@/lib/env";
+import { useEffect, useState } from "react";
+
+/** Public container ID — safe in source; env can override after rebuild. */
+const FALLBACK_GTM_ID = "GTM-MMM4RWL";
+
+function resolveGtmId(): string {
+  return (
+    process.env.NEXT_PUBLIC_GTM_ID?.trim() ||
+    process.env.GTM_ID?.trim() ||
+    FALLBACK_GTM_ID
+  );
+}
+
+function isAnalyticsHost(hostname: string): boolean {
+  const host = hostname.toLowerCase().split(":")[0];
+  if (!host || host === "localhost" || host === "127.0.0.1") return false;
+  if (host === "nowa.bezpieczneinstalacjeelektryczne.pl" || host.startsWith("nowa.")) {
+    return false;
+  }
+  return true;
+}
 
 /**
- * Loads GTM only in production when GTM_ID is set.
- * Prefer GTM over direct GA4 when GA/Ads are configured inside the container.
+ * Loads GTM on the live apex only. Host check is client-side so shared-hosting
+ * builds still work when panel env vars are not injected into `npm run build`.
  */
 export function GoogleTagManager() {
-  // Bracket access keeps the value runtime-readable on shared hosting.
-  const gtmId = (process.env["GTM_ID"] ?? "").trim();
-  if (!gtmId || isStaging()) return null;
+  const [enabled, setEnabled] = useState(false);
+  const gtmId = resolveGtmId();
+
+  useEffect(() => {
+    setEnabled(isAnalyticsHost(window.location.hostname));
+  }, []);
+
+  if (!enabled || !gtmId) return null;
 
   return (
     <>
