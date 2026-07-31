@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import type { ServiceContent } from "@/content/services";
 import { getService } from "@/content/services";
+import { faqPageJsonLd, serviceJsonLd } from "@/lib/jsonld";
 import styles from "./ServicePageView.module.css";
 
 type Props = {
@@ -14,8 +16,24 @@ export function ServicePageView({ service }: Props) {
     .map((slug) => getService(slug))
     .filter(Boolean);
 
+  const faqLd = faqPageJsonLd(
+    service.faq.map((item) => ({
+      question: item.question,
+      answer: item.answer,
+    })),
+  );
+  const structured = [
+    serviceJsonLd({
+      name: service.title,
+      description: service.metaDescription || service.lead,
+      path: `/uslugi/${service.slug}`,
+    }),
+    ...(faqLd ? [faqLd] : []),
+  ];
+
   return (
     <main className={styles.main}>
+      <JsonLd data={structured} />
       <div className={styles.container}>
         <Breadcrumbs
           items={[
@@ -121,12 +139,21 @@ export function ServicePageView({ service }: Props) {
         ) : null}
 
         <p className={styles.contactLink}>
-          <Link href={`/kontakt?usluga=${service.slug}`}>
+          <Link
+            href={`/kontakt?usluga=${service.slug}`}
+            data-cta="service_contact_link"
+            data-service={service.slug}
+          >
             Przejdź do formularza kontaktowego
           </Link>
         </p>
 
-        <CtaBand title={service.ctaTitle} text={service.ctaText} />
+        <CtaBand
+          title={service.ctaTitle}
+          text={service.ctaText}
+          ctaLocation="service_cta_band"
+          serviceName={service.slug}
+        />
       </div>
     </main>
   );

@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# Image optimization backups (keep WebP in repo; originals stay local)
+/public/images/_originals/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

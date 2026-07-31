@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import styles from "./uslugi.module.css";
 
 export const metadata = buildPageMetadata({
-  title: "Usługi elektryczne – przeglądy, pomiary, kompensacja",
+  title: "Usługi elektryczne – przeglądy i pomiary",
   description:
     "Przeglądy instalacji elektrycznych, pomiary, kompensacja mocy biernej, przeglądy firm i maszyn. Zakres zgodny z ofertami CRM.",
   path: "/uslugi",

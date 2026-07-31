@@ -18,19 +18,24 @@ export function Footer() {
             biernej na {company.serviceArea}.
           </p>
           <p className={styles.text}>
-            <a href={telHref}>Tel. {company.phoneDisplay}</a>
+            <a href={telHref} data-cta="footer_phone">
+              Tel. {company.phoneDisplay}
+            </a>
             {company.phoneSecondaryDisplay && company.phoneSecondary ? (
               <>
                 <br />
                 <a
                   href={`tel:+48${company.phoneSecondary.replace(/\s/g, "")}`}
+                  data-cta="footer_phone_secondary"
                 >
                   Tel. {company.phoneSecondaryDisplay}
                 </a>
               </>
             ) : null}
             <br />
-            <a href={`mailto:${company.email}`}>{company.email}</a>
+            <a href={`mailto:${company.email}`} data-cta="footer_email">
+              {company.email}
+            </a>
           </p>
           {company.address ? (
             <p className={styles.text}>{company.address}</p>

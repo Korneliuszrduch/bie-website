@@ -29,11 +29,15 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <a className={styles.phone} href={telHref}>
+          <a className={styles.phone} href={telHref} data-cta="header_phone">
             <span className={styles.phoneLabel}>Zadzwoń</span>
             <span className={styles.phoneNum}>{company.phoneDisplay}</span>
           </a>
-          <Link className={styles.cta} href={CTA_LINKS.review.href}>
+          <Link
+            className={styles.cta}
+            href={CTA_LINKS.review.href}
+            data-cta="header_cta"
+          >
             Wypełnij formularz kontaktowy
           </Link>
         </div>

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props) {
     });
   }
   return buildPageMetadata({
-    title: `Realizacje: ${project.title}`,
+    title: `Realizacje – ${project.title}`,
     description: project.lead,
     path: `/realizacje/${project.slug}`,
   });

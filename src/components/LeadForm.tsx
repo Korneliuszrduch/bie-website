@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { pushDataLayer } from "@/lib/analytics";
 import styles from "./LeadForm.module.css";
 
 export type LeadFormProps = {
@@ -199,6 +200,12 @@ export function LeadForm({
         message: form.message.trim(),
       });
       setStatus("ok");
+      // Conversion event — no PII in the payload.
+      pushDataLayer({
+        event: "lead_form_success",
+        cta_location: compact ? "lead_form_compact" : "lead_form",
+        service_name: form.service || undefined,
+      });
       setForm({
         ...INITIAL,
         service: defaultService || INITIAL.service,

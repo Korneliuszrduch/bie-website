@@ -74,7 +74,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
     serviceLabel: "Oferta: kompensacja mocy biernej",
     photos: [
       {
-        src: "/images/realizacje/kompensacja/kompensator_katowice_agd_rtv.jpg",
+        src: "/images/realizacje/kompensacja/kompensator_katowice_agd_rtv.webp",
         alt: "Kompensator mocy biernej — Katowice, sklep AGD/RTV",
         location: "Katowice (sklep AGD/RTV)",
         locationKey: "katowice",
@@ -121,7 +121,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
           "Po pierwszym miesiącu eksploatacji pozostały jedynie niewielkie opłaty za moc bierną (około 80 zł miesięcznie). Po zdalnej korekcie ustawień całkowicie wyeliminowaliśmy naliczanie opłat za moc bierną.",
       },
       {
-        src: "/images/realizacje/kompensacja/kompensacja_sosnowiec.jpg",
+        src: "/images/realizacje/kompensacja/kompensacja_sosnowiec.webp",
         alt: "Regeneracja kompensacji mocy biernej — Sosnowiec, zakład mięsny",
         location: "Sosnowiec (zakład mięsny)",
         locationKey: "sosnowiec",
@@ -133,7 +133,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
           "W zakładzie mięsnym całkowicie wyeliminowaliśmy opłaty za moc bierną.",
       },
       {
-        src: "/images/realizacje/kompensacja/kompensator_goczałkowice_zdroj.jpg",
+        src: "/images/realizacje/kompensacja/kompensator_goczalkowice_zdroj.jpg",
         alt: "Kompensator mocy biernej — Goczałkowice-Zdrój",
         location: "Goczałkowice-Zdrój",
         locationKey: "goczalkowice-zdroj",
@@ -145,7 +145,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
           "Kompensator spełnia oczekiwania klienta — temat mocy biernej ogarnięty w 100%.",
       },
       {
-        src: "/images/realizacje/kompensacja/kompensator_pszczyna.jpg",
+        src: "/images/realizacje/kompensacja/kompensator_pszczyna.webp",
         alt: "Kompensator mocy biernej — Pszczyna, sklep rybny",
         location: "Pszczyna (sklep rybny)",
         locationKey: "pszczyna",
@@ -234,7 +234,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
         ],
       },
       {
-        src: "/images/realizacje/przeglady_elektryczne/jedlina_przeglad.jpg",
+        src: "/images/realizacje/przeglady_elektryczne/jedlina_przeglad.webp",
         alt: "Przegląd elektryczny — Jedlina, dokumentacja usterek",
         location: "Jedlina",
         locationKey: "jedlina",
@@ -246,29 +246,29 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
           "Klient otrzymał wykaz usterek do naprawy (wilgoć w instalacji, zabezpieczenia, falownik, przyciski STOP).",
         gallery: [
           {
-            src: "/images/realizacje/przeglady_elektryczne/jedlina_ozdzielnica.jpg",
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_ozdzielnica.webp",
             alt: "Rozdzielnica — Jedlina, przegląd elektryczny",
           },
           {
-            src: "/images/realizacje/przeglady_elektryczne/jedlina_gn3f_wilgoc.jpg",
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_gn3f_wilgoc.webp",
             alt: "Zawilgocenie przy instalacji — Jedlina",
           },
           {
-            src: "/images/realizacje/przeglady_elektryczne/jedlina_gniazdo.jpg",
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_gniazdo.webp",
             alt: "Gniazdo z wilgocią / wodą — Jedlina",
           },
           {
-            src: "/images/realizacje/przeglady_elektryczne/jedlina_falownik.jpg",
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_falownik.webp",
             alt: "Falownik — zabrudzony wlot od wentylatora, Jedlina",
           },
           {
-            src: "/images/realizacje/przeglady_elektryczne/jedlina_przycisk.jpg",
+            src: "/images/realizacje/przeglady_elektryczne/jedlina_przycisk.webp",
             alt: "Niesprawny przycisk awaryjny — Jedlina",
           },
         ],
       },
       {
-        src: "/images/realizacje/przeglady_elektryczne/sosnicowice_przeglad_elektryczny_rozdzielnia.jpg",
+        src: "/images/realizacje/przeglady_elektryczne/sosnicowice_przeglad_elektryczny_rozdzielnia.webp",
         alt: "Przegląd instalacji elektrycznej domu — Sośnicowice, rozdzielnia",
         location: "Sośnicowice (k. Gliwic)",
         locationKey: "sosnicowice",

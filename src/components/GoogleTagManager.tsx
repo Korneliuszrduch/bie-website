@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 /** Public container ID — safe in source; env can override after rebuild. */
 const FALLBACK_GTM_ID = "GTM-MMM4RWL";
@@ -17,10 +17,17 @@ function resolveGtmId(): string {
 function isAnalyticsHost(hostname: string): boolean {
   const host = hostname.toLowerCase().split(":")[0];
   if (!host || host === "localhost" || host === "127.0.0.1") return false;
-  if (host === "nowa.bezpieczneinstalacjeelektryczne.pl" || host.startsWith("nowa.")) {
+  if (
+    host === "nowa.bezpieczneinstalacjeelektryczne.pl" ||
+    host.startsWith("nowa.")
+  ) {
     return false;
   }
   return true;
+}
+
+function subscribe() {
+  return () => {};
 }
 
 /**
@@ -28,12 +35,12 @@ function isAnalyticsHost(hostname: string): boolean {
  * builds still work when panel env vars are not injected into `npm run build`.
  */
 export function GoogleTagManager() {
-  const [enabled, setEnabled] = useState(false);
+  const enabled = useSyncExternalStore(
+    subscribe,
+    () => isAnalyticsHost(window.location.hostname),
+    () => false,
+  );
   const gtmId = resolveGtmId();
-
-  useEffect(() => {
-    setEnabled(isAnalyticsHost(window.location.hostname));
-  }, []);
 
   if (!enabled || !gtmId) return null;
 

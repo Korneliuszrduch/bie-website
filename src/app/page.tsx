@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ReviewsSection } from "@/components/ReviewsSection";
@@ -7,12 +8,12 @@ import { LOCATIONS } from "@/content/site";
 import { REALIZATION_PROJECTS } from "@/content/realizations";
 import { getAllServices } from "@/content/services";
 import { getCompanyConfig } from "@/lib/env";
+import { faqPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata } from "@/lib/seo";
 import styles from "./home.module.css";
 
 export const metadata = buildPageMetadata({
-  title:
-    "Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy biernej",
+  title: "Przeglądy instalacji elektrycznych i pomiary",
   description:
     "5-letni przegląd instalacji z protokołem, pomiary elektryczne i kompensacja mocy biernej na Śląsku.",
   path: "/",
@@ -85,25 +86,25 @@ const STATS = [
   {
     value: "150+",
     label: "przeglądów instalacji z protokołem",
-    image: "/images/stats/stat-przeglady-v2.png",
+    image: "/images/stats/stat-przeglady-v2.webp",
     imageAlt: "Rozdzielnica po przeglądzie instalacji elektrycznej",
   },
   {
     value: "5+",
     label: "lat doświadczenia na Śląsku",
-    image: "/images/stats/stat-doswiadczenie-v2.png",
+    image: "/images/stats/stat-doswiadczenie-v2.webp",
     imageAlt: "Samochód serwisowy na Śląsku",
   },
   {
     value: "Domy i firmy",
     label: "ten sam zakres pomiarów i dokumentacji",
-    image: "/images/stats/stat-domy-firmy-v2.png",
+    image: "/images/stats/stat-domy-firmy-v2.webp",
     imageAlt: "Dom jednorodzinny i kompensator w firmie",
   },
   {
     value: "Protokół",
     label: "pod ubezpieczyciela i przepisy (art. 62)",
-    image: "/images/stats/stat-protokol-v2.png",
+    image: "/images/stats/stat-protokol-v2.webp",
     imageAlt: "Protokół z przeglądu i miernik instalacji",
   },
 ];
@@ -182,8 +183,13 @@ export default function HomePage() {
     ].includes(s.slug),
   );
 
+  const homeFaqLd = faqPageJsonLd(
+    HOME_FAQ.map((item) => ({ question: item.q, answer: item.a })),
+  );
+
   return (
     <main>
+      {homeFaqLd ? <JsonLd data={homeFaqLd} /> : null}
       <section className={styles.hero}>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
@@ -202,10 +208,18 @@ export default function HomePage() {
               <li>Kompensacja mocy biernej po analizie faktur</li>
             </ul>
             <div className={styles.heroCtas}>
-              <a className={styles.btnPhone} href={telHref}>
+              <a
+                className={styles.btnPhone}
+                href={telHref}
+                data-cta="home_hero_phone"
+              >
                 Zadzwoń: {company.phoneDisplay}
               </a>
-              <a className={styles.btnGhost} href="#formularz">
+              <a
+                className={styles.btnGhost}
+                href="#formularz"
+                data-cta="home_hero_form"
+              >
                 Wypełnij formularz kontaktowy
               </a>
               {tel2 && company.phoneSecondaryDisplay ? (
@@ -428,7 +442,9 @@ export default function HomePage() {
                 Zadzwoń albo wypełnij formularz — ustalimy termin i zakres.
               </p>
               <p className={styles.finalPhones}>
-                <a href={telHref}>{company.phoneDisplay}</a>
+                <a href={telHref} data-cta="home_faq_phone">
+                  {company.phoneDisplay}
+                </a>
                 {tel2 && company.phoneSecondaryDisplay ? (
                   <>
                     {" · "}
@@ -448,7 +464,9 @@ export default function HomePage() {
       </section>
 
       <div className={styles.mobileBar}>
-        <a href={telHref}>Zadzwoń</a>
+        <a href={telHref} data-cta="home_bottom_phone">
+          Zadzwoń
+        </a>
         <a href="#formularz">Wypełnij formularz kontaktowy</a>
       </div>
     </main>

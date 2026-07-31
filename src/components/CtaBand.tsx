@@ -6,11 +6,15 @@ import styles from "./CtaBand.module.css";
 type Props = {
   title?: string;
   text?: string;
+  ctaLocation?: string;
+  serviceName?: string;
 };
 
 export function CtaBand({
   title = "Potrzebujesz przeglądu lub wyceny?",
   text = "Wypełnij formularz albo zadzwoń — oddzwonimy z propozycją terminu.",
+  ctaLocation = "cta_band",
+  serviceName,
 }: Props) {
   const company = getCompanyConfig();
   const telHref = `tel:+48${company.phone.replace(/\s/g, "")}`;
@@ -22,10 +26,20 @@ export function CtaBand({
         <p className={styles.text}>{text}</p>
       </div>
       <div className={styles.actions}>
-        <Link className={styles.primary} href="/#formularz">
+        <Link
+          className={styles.primary}
+          href="/#formularz"
+          data-cta={ctaLocation}
+          data-service={serviceName}
+        >
           {CTA_LINKS.review.label}
         </Link>
-        <a className={styles.phone} href={telHref}>
+        <a
+          className={styles.phone}
+          href={telHref}
+          data-cta={`${ctaLocation}_phone`}
+          data-service={serviceName}
+        >
           Zadzwoń: {company.phoneDisplay}
         </a>
       </div>

@@ -1,12 +1,14 @@
 ﻿import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 import { LocationLead } from "@/components/LocationLead";
 import { PageShell } from "@/components/PageShell";
 import { RelatedRealizations } from "@/components/RelatedRealizations";
 import { getCompanyConfig } from "@/lib/env";
+import { faqPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Przeglądy i pomiary elektryczne w Pszczynie",
+  title: "Przeglądy elektryczne w Pszczynie",
   description:
     "5-letni przegląd instalacji, pomiary i kompensacja mocy biernej w Pszczynie i okolicach. Realizacje: sklep rybny, browar, Goczałkowice, Kozy.",
   path: "/lokalizacje/pszczyna",
@@ -14,8 +16,25 @@ export const metadata = buildPageMetadata({
 
 export default function PszczynaPage() {
   const company = getCompanyConfig();
+  const faqLd = faqPageJsonLd([
+    {
+      question: "Czy dojazd do Pszczyny jest w ofercie?",
+      answer:
+        "Tak — to podstawowy obszar działania. Szczegóły terminu podamy przy umówieniu przeglądu lub wycenie.",
+    },
+    {
+      question: "Jak szybko umówić przegląd?",
+      answer: `Zadzwoń pod ${company.phoneDisplay}${
+        company.phoneSecondaryDisplay
+          ? ` lub ${company.phoneSecondaryDisplay}`
+          : ""
+      } albo zostaw kontakt w formularzu poniżej.`,
+    },
+  ]);
 
   return (
+    <>
+      {faqLd ? <JsonLd data={faqLd} /> : null}
     <PageShell
       title="Przeglądy i pomiary elektryczne w Pszczynie"
       lead={`Działamy w Pszczynie i okolicach — przeglądy pomiarowe instalacji, pomiary oraz analiza faktur pod kątem mocy biernej. Siedziba: ${company.address}.`}
@@ -89,5 +108,6 @@ export default function PszczynaPage() {
         defaultService=""
       />
     </PageShell>
+    </>
   );
 }

@@ -7,7 +7,9 @@
     "build": "NODE_OPTIONS=--max-old-space-size=1536 next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "smoke:seo": "node scripts/seo-smoke.mjs"
+    "smoke:seo": "node scripts/seo-smoke.mjs",
+    "images:report": "node scripts/optimize-images.mjs --report",
+    "images:optimize": "node scripts/optimize-images.mjs --write --update-refs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^9",
-    "eslint-config-next": "16.2.12"
+    "eslint-config-next": "16.2.12",
+    "sharp": "^0.35.3"
   }
 }

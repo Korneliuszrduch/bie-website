@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { REALIZATION_PROJECTS } from "@/content/realizations";
-import { LOCATIONS, SERVICES } from "@/content/site";
+import { LOCATIONS } from "@/content/site";
+import { getAllServices } from "@/content/services";
 import { getSiteUrl, isIndexingAllowed } from "@/lib/env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -12,11 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const now = new Date();
 
+  // /poradnik stays in nav but is temporarily noindex until ≥3 articles exist.
   const staticPaths = [
     "",
     "/uslugi",
     "/realizacje",
-    "/poradnik",
     "/lokalizacje",
     "/o-firmie",
     "/terminy",
@@ -24,7 +25,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/polityka-prywatnosci",
   ];
 
-  const servicePaths = SERVICES.map((s) => s.href);
+  const servicePaths = getAllServices()
+    .filter((s) => !s.thinContent)
+    .map((s) => `/uslugi/${s.slug}`);
+
+  // Locations without unique content are noindex — keep them out of the sitemap.
   const locationPaths = LOCATIONS.filter((l) => l.hasUniqueContent).map(
     (l) => l.href,
   );

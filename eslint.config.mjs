@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // CloudLinux / Passenger entry (CommonJS require).
+    "server.js",
+    "scripts/**",
   ]),
 ]);
 

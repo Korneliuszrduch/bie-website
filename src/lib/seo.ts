@@ -36,6 +36,7 @@ export function stagingRobotsMeta(): Metadata["robots"] {
   };
 }
 
+/** Production thin pages: noindex but still follow links. */
 export function productionRobotsMeta(noIndex = false): Metadata["robots"] {
   if (noIndex) {
     return {
@@ -57,6 +58,10 @@ export function productionRobotsMeta(noIndex = false): Metadata["robots"] {
   };
 }
 
+/**
+ * Builds page metadata with a single brand suffix.
+ * Uses `title.absolute` so root `title.template` cannot double-append the company name.
+ */
 export function buildPageMetadata({
   title,
   description,
@@ -69,15 +74,18 @@ export function buildPageMetadata({
   const fullTitle = title.includes(company.name)
     ? title
     : `${title} | ${company.name}`;
-  const blockIndexing = isStaging() || noIndex || !isIndexingAllowed();
+
+  // Staging lock vs production thin noindex must stay separate.
+  const robots =
+    isStaging() || !isIndexingAllowed()
+      ? stagingRobotsMeta()
+      : productionRobotsMeta(noIndex);
 
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical },
-    robots: blockIndexing
-      ? stagingRobotsMeta()
-      : productionRobotsMeta(noIndex),
+    robots,
     openGraph: {
       type: "website",
       locale: "pl_PL",
@@ -85,9 +93,7 @@ export function buildPageMetadata({
       siteName: company.name,
       title: fullTitle,
       description,
-      ...(ogImage
-        ? { images: [{ url: absoluteUrl(ogImage) }] }
-        : {}),
+      ...(ogImage ? { images: [{ url: absoluteUrl(ogImage) }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -106,7 +112,8 @@ export function defaultRootMetadata(): Metadata {
   return {
     metadataBase: rootMetadataBase(),
     title: {
-      default: `${company.name} – przeglądy, pomiary, kompensacja mocy biernej`,
+      default: `Przeglądy instalacji elektrycznych | ${company.name}`,
+      // Fallback only for pages that do not use buildPageMetadata / absolute titles.
       template: `%s | ${company.name}`,
     },
     description:

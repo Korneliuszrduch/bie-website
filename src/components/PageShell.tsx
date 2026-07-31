@@ -33,9 +33,13 @@ export function PageShell({
         {children}
         <p className={styles.contactLink}>
           Masz pytanie?{" "}
-          <Link href="/kontakt">Przejdź do formularza kontaktowego</Link>
+          <Link href="/kontakt" data-cta="pageshell_contact">
+            Przejdź do formularza kontaktowego
+          </Link>
           {" · "}
-          <a href={telHref}>Zadzwoń</a>
+          <a href={telHref} data-cta="pageshell_phone">
+            Zadzwoń
+          </a>
         </p>
         {showCta ? <CtaBand /> : null}
       </div>

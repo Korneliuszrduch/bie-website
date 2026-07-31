@@ -5,7 +5,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import styles from "./terminy.module.css";
 
 export const metadata = buildPageMetadata({
-  title: "Umów termin przeglądu instalacji elektrycznej",
+  title: "Umów termin przeglądu instalacji",
   description:
     "Wybierz dogodny termin 5-letniego przeglądu instalacji elektrycznej w kalendarzu online. Obsługujemy Śląsk.",
   path: "/terminy",
@@ -27,9 +27,13 @@ export default function TerminyPage() {
         <p>
           Kalendarz dotyczy przeglądu instalacji elektrycznej. Masz pytanie albo
           potrzebujesz wyceny?{" "}
-          <a href={telHref}>Zadzwoń: {company.phoneDisplay}</a>
+          <a href={telHref} data-cta="terminy_phone">
+            Zadzwoń: {company.phoneDisplay}
+          </a>
           {" · "}
-          <Link href="/kontakt">Formularz kontaktowy</Link>
+          <Link href="/kontakt" data-cta="terminy_contact">
+            Formularz kontaktowy
+          </Link>
         </p>
       </div>
 
@@ -45,7 +49,13 @@ export default function TerminyPage() {
 
       <p className={styles.fallback}>
         Kalendarz się nie ładuje?{" "}
-        <a href={appointmentsUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={appointmentsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-calendar
+          data-cta="terminy_calendar"
+        >
           Otwórz umawianie terminu w nowej karcie
         </a>
         .

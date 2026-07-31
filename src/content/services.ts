@@ -36,7 +36,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "przeglady-instalacji-elektrycznych": {
     slug: "przeglady-instalacji-elektrycznych",
     title: "Przeglądy instalacji elektrycznych",
-    metaTitle: "5-letni przegląd instalacji elektrycznej – protokół i pomiary",
+    metaTitle: "5-letni przegląd instalacji elektrycznej",
     metaDescription:
       "5-letni przegląd instalacji elektrycznej z pomiarami i protokołem. Zakres jak w ofercie: izolacja, uziemienie, RCD, SWZ. Śląsk.",
     h1: "5-letni przegląd instalacji elektrycznej",
@@ -173,7 +173,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "pomiary-elektryczne": {
     slug: "pomiary-elektryczne",
     title: "Pomiary elektryczne",
-    metaTitle: "Pomiary elektryczne – izolacja, uziemienie, RCD, SWZ",
+    metaTitle: "Pomiary elektryczne instalacji",
     metaDescription:
       "Pomiary elektryczne instalacji: rezystancja izolacji, uziemienie, ciągłość PE, SWZ, test RCD. Protokół z wynikami. Śląsk.",
     h1: "Pomiary elektryczne instalacji",
@@ -218,7 +218,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "przeglady-elektryczne-domow": {
     slug: "przeglady-elektryczne-domow",
     title: "Przeglądy elektryczne domów",
-    metaTitle: "Przegląd elektryczny domu – pomiary i protokół",
+    metaTitle: "Przegląd elektryczny domu",
     metaDescription:
       "5-letni przegląd instalacji elektrycznej w domu: pomiary, protokół, zalecenia. Dla właścicieli domów na Śląsku.",
     h1: "Przeglądy elektryczne domów",
@@ -317,7 +317,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "przeglady-elektryczne-firm": {
     slug: "przeglady-elektryczne-firm",
     title: "Przeglądy elektryczne firm",
-    metaTitle: "Przeglądy elektryczne firm i maszyn – protokół",
+    metaTitle: "Przeglądy elektryczne firm",
     metaDescription:
       "Przeglądy instalacji w firmach oraz przegląd elektryczny maszyn z protokołem. Pomiary, zabezpieczenia, dokumentacja.",
     h1: "Przeglądy elektryczne firm",
@@ -377,7 +377,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "kompensacja-mocy-biernej": {
     slug: "kompensacja-mocy-biernej",
     title: "Kompensacja mocy biernej",
-    metaTitle: "Kompensacja mocy biernej – analiza faktur i SVG",
+    metaTitle: "Kompensacja mocy biernej",
     metaDescription:
       "Analiza faktur za energię pod kątem mocy biernej i dobór kompensatora SVG. W wielu przypadkach można wyeliminować ten koszt. Śląsk.",
     h1: "Kompensacja mocy biernej",
@@ -440,7 +440,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "analiza-jakosci-energii": {
     slug: "analiza-jakosci-energii",
     title: "Analiza jakości energii",
-    metaTitle: "Analiza jakości energii i parametrów zasilania",
+    metaTitle: "Analiza jakości energii",
     metaDescription:
       "Analiza parametrów energii i faktur — wsparcie przy problemach z mocą bierną i doborze kompensacji.",
     h1: "Analiza jakości energii",
@@ -478,7 +478,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "modernizacja-rozdzielnic": {
     slug: "modernizacja-rozdzielnic",
     title: "Modernizacja rozdzielnic",
-    metaTitle: "Modernizacja i montaż rozdzielnic elektrycznych",
+    metaTitle: "Modernizacja rozdzielnic elektrycznych",
     metaDescription:
       "Montaż i modernizacja rozdzielni elektrycznych — bezpieczeństwo, porządek instalacji, przygotowanie pod pomiary i rozbudowę.",
     h1: "Modernizacja rozdzielnic elektrycznych",
@@ -514,7 +514,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "ochrona-przeciwprzepieciowa": {
     slug: "ochrona-przeciwprzepieciowa",
     title: "Ochrona przeciwprzepięciowa",
-    metaTitle: "Ochrona przeciwprzepięciowa instalacji elektrycznej",
+    metaTitle: "Ochrona przeciwprzepięciowa",
     metaDescription:
       "Dobór i montaż ochrony przeciwprzepięciowej w instalacji — w powiązaniu z przeglądem i modernizacją rozdzielnicy.",
     h1: "Ochrona przeciwprzepięciowa",
@@ -541,7 +541,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "magazyny-energii": {
     slug: "magazyny-energii",
     title: "Magazyny energii",
-    metaTitle: "Magazyny energii – doradztwo i wykonawstwo",
+    metaTitle: "Magazyny energii",
     metaDescription:
       "Doradztwo w zakresie magazynów energii dla obiektów. Szczegółowy zakres oferty — po kontakcie.",
     h1: "Magazyny energii",
@@ -562,7 +562,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "systemy-ems": {
     slug: "systemy-ems",
     title: "Systemy EMS",
-    metaTitle: "Systemy EMS – zarządzanie energią",
+    metaTitle: "Systemy EMS",
     metaDescription:
       "Systemy zarządzania energią (EMS) — monitoring i optymalizacja. Oferta indywidualna.",
     h1: "Systemy EMS",
