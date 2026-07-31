@@ -296,7 +296,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
   {
     slug: "instalacje",
     title: "Instalacje elektryczne",
-    lead: "Wybrane zdjęcia z wykonanych instalacji i rozdzielnic. Opisy lokalizacji uzupełnimy po potwierdzeniu obiektów.",
+    lead: "Wybrane zdjęcia z wykonanych instalacji i rozdzielnic.",
     serviceHref: "/uslugi/przeglady-instalacji-elektrycznych",
     serviceLabel: "Oferta: przeglądy i instalacje",
     photos: [
@@ -350,7 +350,7 @@ export const REALIZATION_PROJECTS: RealizationProject[] = [
   {
     slug: "przerobki",
     title: "Przeróbki i modernizacje",
-    lead: "Modernizacje rozdzielnic, poprawki instalacji i naprawy. Opisy case’ów uzupełnimy tam, gdzie mamy dane obiektu.",
+    lead: "Modernizacje rozdzielnic, poprawki instalacji i naprawy.",
     serviceHref: "/uslugi/modernizacja-rozdzielnic",
     serviceLabel: "Oferta: modernizacja rozdzielnic",
     photos: [
