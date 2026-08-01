@@ -195,17 +195,17 @@ export default function HomePage() {
           <div className={styles.heroCopy}>
             <p className={styles.badge}>Obsługujemy {company.serviceArea}</p>
             <h1 className={styles.h1}>
-              Przeglądy instalacji elektrycznych dla domów i firm. Protokół
-              zgodny z wymaganiami ubezpieczycieli i przepisami.
+              Przeglądy instalacji elektrycznych dla domów i firm. Kompensacja
+              mocy biernej po analizie faktur.
             </h1>
             <p className={styles.lead}>
               Pomiary, nie „papier”. Po przeglądzie dostajesz wyniki i zalecenia.
-              Przy mocy biernej zaczynamy od analizy faktur.
+              Protokół zgodny z wymaganiami ubezpieczycieli i przepisami.
             </p>
             <ul className={styles.bullets}>
               <li>5-letni przegląd instalacji — zakres jak w ofercie</li>
               <li>Protokół z pomiarów (izolacja, uziemienie, RCD, SWZ…)</li>
-              <li>Kompensacja mocy biernej po analizie faktur</li>
+              <li>Kompensacja mocy biernej — dobór i montaż po analizie faktur</li>
             </ul>
             <div className={styles.heroCtas}>
               <a

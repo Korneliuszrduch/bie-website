@@ -13,6 +13,18 @@
   padding: 2.5rem 1.25rem 1.5rem;
 }
 
+.col {
+  min-width: 0;
+}
+
+.email {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .heading {
   margin: 0 0 0.75rem;
   font-size: 0.95rem;

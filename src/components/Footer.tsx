@@ -33,7 +33,11 @@ export function Footer() {
               </>
             ) : null}
             <br />
-            <a href={`mailto:${company.email}`} data-cta="footer_email">
+            <a
+              href={`mailto:${company.email}`}
+              className={styles.email}
+              data-cta="footer_email"
+            >
               {company.email}
             </a>
           </p>
