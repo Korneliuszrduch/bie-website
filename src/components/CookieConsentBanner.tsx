@@ -21,7 +21,37 @@ export function CookieConsentBanner() {
   });
 
   useEffect(() => {
-    setVisible(!hasConsentDecision());
+    if (hasConsentDecision()) return;
+
+    let done = false;
+    let fallbackId = 0;
+    let po: PerformanceObserver | null = null;
+
+    const show = () => {
+      if (done) return;
+      done = true;
+      window.clearTimeout(fallbackId);
+      po?.disconnect();
+      // Let the browser finalize LCP on real page content first.
+      window.setTimeout(() => setVisible(true), 400);
+    };
+
+    try {
+      po = new PerformanceObserver((list) => {
+        if (list.getEntries().length > 0) show();
+      });
+      po.observe({ type: "largest-contentful-paint", buffered: true });
+    } catch {
+      /* older browsers */
+    }
+
+    fallbackId = window.setTimeout(show, 3500);
+
+    return () => {
+      done = true;
+      window.clearTimeout(fallbackId);
+      po?.disconnect();
+    };
   }, []);
 
   function save(next: ConsentPrefs) {

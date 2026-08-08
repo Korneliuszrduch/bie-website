@@ -190,14 +190,15 @@
 
 @media (max-width: 640px) {
   .dim {
-    background: color-mix(in srgb, #020617 58%, transparent);
+    background: color-mix(in srgb, #020617 40%, transparent);
   }
 
   .inner {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
-    max-height: min(88dvh, 36rem);
+    /* Keep sheet compact so it is less likely to become the LCP element. */
+    max-height: min(52dvh, 22rem);
     overflow: hidden;
     gap: 0;
     padding: 0;
