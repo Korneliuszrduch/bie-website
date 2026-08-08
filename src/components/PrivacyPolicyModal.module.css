@@ -123,3 +123,44 @@
 .done:focus-visible {
   filter: brightness(1.05);
 }
+
+@media (max-width: 640px) {
+  .root {
+    padding: 0;
+    place-items: end stretch;
+  }
+
+  .dialog {
+    width: 100%;
+    max-height: min(92dvh, 100%);
+    border-radius: 0.85rem 0.85rem 0 0;
+  }
+
+  .header {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .title {
+    font-size: 1.02rem;
+  }
+
+  .close {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.75rem;
+  }
+
+  .body {
+    padding: 0.85rem 0.95rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .footer {
+    padding: 0.7rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .done {
+    min-height: 2.75rem;
+    font-size: 0.92rem;
+  }
+}

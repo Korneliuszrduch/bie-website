@@ -194,7 +194,6 @@ export default function HomePage() {
         as="image"
         href="/images/hero-main.webp"
         type="image/webp"
-        // @ts-expect-error fetchPriority is valid on link preload
         fetchPriority="high"
       />
       <section className={styles.hero}>
