@@ -189,6 +189,14 @@ export default function HomePage() {
   return (
     <main>
       {homeFaqLd ? <JsonLd data={homeFaqLd} /> : null}
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-main.webp"
+        type="image/webp"
+        // @ts-expect-error fetchPriority is valid on link preload
+        fetchPriority="high"
+      />
       <section className={styles.hero}>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
@@ -197,6 +205,21 @@ export default function HomePage() {
               Przeglądy instalacji elektrycznych dla domów i firm. Kompensacja
               mocy biernej po analizie faktur.
             </h1>
+            <figure className={styles.heroPhoto}>
+              <Image
+                src="/images/hero-main.webp"
+                alt={`${company.personName} przy aucie serwisowym — przypomnienie o obowiązkowym przeglądzie elektrycznym`}
+                width={349}
+                height={261}
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 960px) min(100vw, 26rem), 26rem"
+                className={styles.heroPhotoImg}
+              />
+              <figcaption className={styles.heroPhotoCap}>
+                {company.personName} · przeglądy instalacji elektrycznych
+              </figcaption>
+            </figure>
             <p className={styles.lead}>
               Pomiary, nie „papier”. Po przeglądzie dostajesz wyniki i zalecenia.
               Protokół zgodny z wymaganiami ubezpieczycieli i przepisami.
@@ -227,20 +250,6 @@ export default function HomePage() {
                 </a>
               ) : null}
             </div>
-            <figure className={styles.heroPhoto}>
-              <Image
-                src="/images/hero-main.jpg"
-                alt={`${company.personName} przy aucie serwisowym — przypomnienie o obowiązkowym przeglądzie elektrycznym`}
-                width={800}
-                height={600}
-                priority
-                sizes="(max-width: 960px) 100vw, 420px"
-                className={styles.heroPhotoImg}
-              />
-              <figcaption className={styles.heroPhotoCap}>
-                {company.personName} · przeglądy instalacji elektrycznych
-              </figcaption>
-            </figure>
           </div>
           <div className={styles.heroForm} id="formularz">
             <LeadForm
