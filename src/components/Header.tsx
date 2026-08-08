@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CTA_LINKS, MAIN_NAV } from "@/content/site";
 import { getCompanyConfig } from "@/lib/env";
@@ -11,9 +12,16 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.bar}>
         <Link href="/" className={styles.brand}>
-          <span className={styles.brandMark} aria-hidden="true" />
+          <Image
+            src="/images/logo-bie.webp"
+            alt={company.name}
+            width={100}
+            height={100}
+            className={styles.brandLogo}
+            priority
+          />
           <span className={styles.brandText}>
-            <strong>{company.name}</strong>
+            <strong className={styles.brandName}>{company.name}</strong>
             <span>Przeglądy · pomiary · kompensacja</span>
           </span>
         </Link>

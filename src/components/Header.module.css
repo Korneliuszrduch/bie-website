@@ -10,7 +10,7 @@
 .bar {
   max-width: var(--container);
   margin-inline: auto;
-  padding: 0.75rem 1.25rem;
+  padding: 0.65rem 1.25rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -25,12 +25,14 @@
   min-width: min(100%, 15rem);
 }
 
-.brandMark {
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 0.35rem;
-  background: linear-gradient(145deg, var(--color-primary) 0%, #14608f 70%, var(--color-accent) 100%);
+.brandLogo {
+  width: 6.25rem;
+  height: 6.25rem;
   flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-border) 80%, transparent);
 }
 
 .brandText {
@@ -40,7 +42,7 @@
   line-height: 1.2;
 }
 
-.brandText strong {
+.brandName {
   font-size: 0.9rem;
   color: var(--color-ink);
 }
@@ -48,6 +50,25 @@
 .brandText span {
   font-size: 0.72rem;
   color: var(--color-muted);
+}
+
+@media (max-width: 520px) {
+  .brandName {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .brandLogo {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
 }
 
 .nav {

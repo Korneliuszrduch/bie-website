@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FOOTER_SERVICES, INDEXABLE_LOCATIONS } from "@/content/site";
 import { getCompanyConfig } from "@/lib/env";
@@ -12,7 +13,16 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.col}>
-          <h2 className={styles.heading}>{company.name}</h2>
+          <div className={styles.brandBlock}>
+            <Image
+              src="/images/logo-bie.webp"
+              alt=""
+              width={92}
+              height={92}
+              className={styles.brandLogo}
+            />
+            <h2 className={styles.heading}>{company.name}</h2>
+          </div>
           <p className={styles.text}>
             Przeglądy instalacji elektrycznych, pomiary i kompensacja mocy
             biernej na {company.serviceArea}.

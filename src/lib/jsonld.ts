@@ -63,7 +63,11 @@ export function businessJsonLd(): JsonLd {
       ? `+48${company.phone.replace(/\s/g, "")}`
       : undefined,
     taxID: company.nip || undefined,
-    image: absoluteUrl("/images/hero-main.jpg"),
+    logo: absoluteUrl("/images/logo-bie.png"),
+    image: [
+      absoluteUrl("/images/logo-bie.png"),
+      absoluteUrl("/images/hero-main.jpg"),
+    ],
     address: postalAddressFromConfig(),
     areaServed: company.serviceArea
       ? { "@type": "AdministrativeArea", name: company.serviceArea }

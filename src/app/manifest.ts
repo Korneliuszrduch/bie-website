@@ -19,6 +19,12 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "32x32",
         type: "image/png",
       },
+      {
+        src: "/images/logo-bie-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
     ],
     id: getSiteUrl(),
   };
