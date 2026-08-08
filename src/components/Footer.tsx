@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LOCATIONS, SERVICES } from "@/content/site";
+import { FOOTER_SERVICES, INDEXABLE_LOCATIONS } from "@/content/site";
 import { getCompanyConfig } from "@/lib/env";
 import styles from "./Footer.module.css";
 
@@ -49,7 +49,7 @@ export function Footer() {
         <div className={styles.col}>
           <h2 className={styles.heading}>Usługi</h2>
           <ul className={styles.list}>
-            {SERVICES.slice(0, 6).map((s) => (
+            {FOOTER_SERVICES.map((s) => (
               <li key={s.slug}>
                 <Link href={s.href}>{s.title}</Link>
               </li>
@@ -63,7 +63,7 @@ export function Footer() {
         <div className={styles.col}>
           <h2 className={styles.heading}>Lokalizacje</h2>
           <ul className={styles.list}>
-            {LOCATIONS.map((l) => (
+            {INDEXABLE_LOCATIONS.map((l) => (
               <li key={l.slug}>
                 <Link href={l.href}>{l.name}</Link>
               </li>
@@ -76,9 +76,6 @@ export function Footer() {
           <ul className={styles.list}>
             <li>
               <Link href="/realizacje">Realizacje</Link>
-            </li>
-            <li>
-              <Link href="/poradnik">Poradnik</Link>
             </li>
             <li>
               <Link href="/o-firmie">O firmie</Link>

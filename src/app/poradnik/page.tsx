@@ -3,7 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { buildPageMetadata } from "@/lib/seo";
 
 // Temporarily noindex until at least 3 valuable articles are published.
-// Then remove noIndex and re-add "/poradnik" to src/app/sitemap.ts.
+// Then remove noIndex, re-add "/poradnik" to sitemap.ts, and restore Header/Footer links.
 export const metadata = buildPageMetadata({
   title: "Poradnik",
   description:

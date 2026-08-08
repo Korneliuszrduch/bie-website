@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const now = new Date();
 
-  // /poradnik stays in nav but is temporarily noindex until ≥3 articles exist.
+  // /poradnik is temporarily noindex and omitted from primary nav until ≥3 articles exist.
   const staticPaths = [
     "",
     "/uslugi",

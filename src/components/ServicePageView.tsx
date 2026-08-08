@@ -14,7 +14,7 @@ type Props = {
 export function ServicePageView({ service }: Props) {
   const related = service.relatedServiceSlugs
     .map((slug) => getService(slug))
-    .filter(Boolean);
+    .filter((s): s is ServiceContent => s != null && !s.thinContent);
 
   const faqLd = faqPageJsonLd(
     service.faq.map((item) => ({
@@ -117,9 +117,6 @@ export function ServicePageView({ service }: Props) {
             )}
             <li>
               <Link href="/realizacje">Realizacje</Link>
-            </li>
-            <li>
-              <Link href="/poradnik">Poradnik</Link>
             </li>
           </ul>
         </section>

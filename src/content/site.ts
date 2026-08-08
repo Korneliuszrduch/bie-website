@@ -161,18 +161,24 @@ export const LOCATIONS: LocationSummary[] = [
   },
 ];
 
+/** Core services for footer / primary promos (thin services stay on /uslugi only). */
+export const FOOTER_SERVICES = SERVICES.slice(0, 5);
+
+/** Locations with unique content — use in footer/home chips (thin cities stay on /lokalizacje). */
+export const INDEXABLE_LOCATIONS = LOCATIONS.filter((l) => l.hasUniqueContent);
+
 export const MAIN_NAV: NavItem[] = [
   {
     href: "/uslugi",
     label: "Usługi",
-    children: SERVICES.map((s) => ({ href: s.href, label: s.title })),
+    children: FOOTER_SERVICES.map((s) => ({ href: s.href, label: s.title })),
   },
   { href: "/realizacje", label: "Realizacje" },
-  { href: "/poradnik", label: "Poradnik" },
+  // /poradnik omitted from nav until ≥3 articles (page stays reachable, noindex)
   {
     href: "/lokalizacje",
     label: "Lokalizacje",
-    children: LOCATIONS.map((l) => ({ href: l.href, label: l.name })),
+    children: INDEXABLE_LOCATIONS.map((l) => ({ href: l.href, label: l.name })),
   },
   { href: "/o-firmie", label: "O firmie" },
   { href: "/terminy", label: "Terminy" },

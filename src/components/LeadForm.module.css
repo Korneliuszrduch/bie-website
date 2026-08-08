@@ -67,9 +67,26 @@
   line-height: 1.4;
 }
 
-.check a {
+.check a,
+.policyLink {
   color: var(--color-primary);
   font-weight: 600;
+}
+
+.policyLink {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.policyLink:hover,
+.policyLink:focus-visible {
+  color: var(--color-ink);
 }
 
 .check input {

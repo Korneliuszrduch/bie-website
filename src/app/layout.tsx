@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import { ConversionTracker } from "@/components/ConversionTracker";
+import { CookieConsentBanner } from "@/components/CookieConsentBanner";
 import { Footer } from "@/components/Footer";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { Header } from "@/components/Header";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <CookieConsentBanner />
       </body>
     </html>
   );

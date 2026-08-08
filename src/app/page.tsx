@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { LeadForm } from "@/components/LeadForm";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ReviewsSection } from "@/components/ReviewsSection";
-import { LOCATIONS } from "@/content/site";
+import { INDEXABLE_LOCATIONS } from "@/content/site";
 import { REALIZATION_PROJECTS } from "@/content/realizations";
 import { getAllServices } from "@/content/services";
 import { getCompanyConfig } from "@/lib/env";
@@ -179,7 +179,6 @@ export default function HomePage() {
       "kompensacja-mocy-biernej",
       "przeglady-elektryczne-firm",
       "przeglady-elektryczne-domow",
-      "modernizacja-rozdzielnic",
     ].includes(s.slug),
   );
 
@@ -407,7 +406,7 @@ export default function HomePage() {
             <p>Pszczyna i okolice oraz miasta na {company.serviceArea}:</p>
           </div>
           <ul className={styles.chips}>
-            {LOCATIONS.map((loc) => (
+            {INDEXABLE_LOCATIONS.map((loc) => (
               <li key={loc.slug}>
                 <Link href={loc.href}>{loc.name}</Link>
               </li>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { PrivacyPolicyModal } from "@/components/PrivacyPolicyModal";
 import { pushDataLayer } from "@/lib/analytics";
 import styles from "./LeadForm.module.css";
 
@@ -125,6 +126,7 @@ export function LeadForm({
   );
   const [serverError, setServerError] = useState("");
   const [submitted, setSubmitted] = useState<FormState | null>(null);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   function validate(values: FormState) {
     const next: Record<string, string> = {};
@@ -528,7 +530,13 @@ export function LeadForm({
         />
         <span>
           Wyrażam zgodę na kontakt w sprawie zapytania.{" "}
-          <a href="/polityka-prywatnosci">Polityka prywatności</a>
+          <button
+            type="button"
+            className={styles.policyLink}
+            onClick={() => setPrivacyOpen(true)}
+          >
+            Polityka prywatności
+          </button>
         </span>
       </label>
       {errors.consent ? (
@@ -544,6 +552,11 @@ export function LeadForm({
       >
         {status === "loading" ? "Wysyłanie…" : submitLabel}
       </button>
+
+      <PrivacyPolicyModal
+        open={privacyOpen}
+        onClose={() => setPrivacyOpen(false)}
+      />
     </form>
   );
 }
