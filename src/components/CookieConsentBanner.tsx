@@ -87,11 +87,17 @@ export function CookieConsentBanner() {
               Zgoda na pliki cookies
             </p>
             <p id="cookie-consent-desc" className={styles.text}>
-              W ramach serwisu stosujemy pliki cookies by umożliwić Ci wygodne
-              korzystanie z serwisu. Jeśli nie zmienisz ustawień dotyczących
-              cookies w Twojej przeglądarce, będą one umieszczane na Twoim
-              komputerze. W każdej chwili możesz zmienić swoje ustawienia.
-              Dowiedz się więcej w naszej{" "}
+              <span className={styles.textDesktop}>
+                W ramach serwisu stosujemy pliki cookies by umożliwić Ci wygodne
+                korzystanie z serwisu. Jeśli nie zmienisz ustawień dotyczących
+                cookies w Twojej przeglądarce, będą one umieszczane na Twoim
+                komputerze. W każdej chwili możesz zmienić swoje ustawienia.
+                Dowiedz się więcej w naszej{" "}
+              </span>
+              <span className={styles.textMobile}>
+                Stosujemy pliki cookies, by ułatwić korzystanie z serwisu.
+                Ustawienia możesz zmienić w każdej chwili. Więcej w{" "}
+              </span>
               <button
                 type="button"
                 className={styles.policyLink}

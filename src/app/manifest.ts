@@ -16,8 +16,14 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [
       {
         src: "/icon",
-        sizes: "32x32",
+        sizes: "48x48",
         type: "image/png",
+      },
+      {
+        src: "/images/favicon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
       },
       {
         src: "/images/logo-bie-512.png",
