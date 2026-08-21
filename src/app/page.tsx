@@ -469,13 +469,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <div className={styles.mobileBar}>
-        <a href={telHref} data-cta="home_bottom_phone">
-          Zadzwoń
-        </a>
-        <a href="#formularz">Wypełnij formularz kontaktowy</a>
-      </div>
     </main>
   );
 }

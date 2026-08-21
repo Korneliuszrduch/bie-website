@@ -8,6 +8,20 @@
   padding-inline: 1.25rem;
 }
 
+@media (max-width: 760px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .container {
+    padding-inline: 0.9rem;
+  }
+
+  .head h2 {
+    font-size: 1.35rem;
+  }
+}
+
 .head {
   margin-bottom: 1.35rem;
   max-width: 40rem;

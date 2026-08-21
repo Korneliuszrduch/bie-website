@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import { ConversionTracker } from "@/components/ConversionTracker";
 import { CookieConsentBanner } from "@/components/CookieConsentBanner";
@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { GoogleTagManager } from "@/components/GoogleTagManager";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import { MobileStickyBar } from "@/components/MobileStickyBar";
 import { StagingBanner } from "@/components/StagingBanner";
 import { businessJsonLd, webSiteJsonLd } from "@/lib/jsonld";
 import { defaultRootMetadata } from "@/lib/seo";
@@ -19,6 +20,12 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = defaultRootMetadata();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export default function RootLayout({
   children,
@@ -35,6 +42,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <MobileStickyBar />
         <CookieConsentBanner />
       </body>
     </html>

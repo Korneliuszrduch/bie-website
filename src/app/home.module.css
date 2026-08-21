@@ -524,48 +524,55 @@
   text-decoration: none;
 }
 
-.mobileBar {
-  display: none;
-}
-
 @media (max-width: 760px) {
-  .mobileBar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 60;
+  .hero {
+    padding: 1.35rem 0.9rem 1.75rem;
+  }
+
+  .h1 {
+    max-width: none;
+    font-size: 1.42rem;
+  }
+
+  .lead,
+  .bullets li {
+    font-size: 0.92rem;
+  }
+
+  .heroCtas {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    padding: 0.65rem 0.75rem calc(0.65rem + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, #07263f 96%, transparent);
-    border-top: 1px solid color-mix(in srgb, #fff 12%, transparent);
   }
 
-  .mobileBar a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 0.5rem;
-    border-radius: 0.35rem;
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-decoration: none;
+  .heroCtas a {
+    width: 100%;
   }
 
-  .mobileBar a:first-child {
-    background: transparent;
-    color: #fff;
-    border: 1px solid color-mix(in srgb, #fff 35%, transparent);
+  .heroForm {
+    max-width: none;
+    justify-self: stretch;
   }
 
-  .mobileBar a:last-child {
-    background: var(--color-accent);
-    color: #1a1400;
+  .container,
+  .containerNarrow {
+    padding-inline: 0.9rem;
+  }
+
+  .faq details {
+    padding: 0.75rem 0.8rem;
+  }
+
+  .faq summary {
+    font-size: 0.95rem;
+  }
+
+  .section,
+  .sectionAlt,
+  .sectionDark,
+  .sectionCta {
+    padding: 2rem 0;
   }
 
   .sectionCta {
-    padding-bottom: 6rem;
+    padding-bottom: 5.5rem;
   }
 }

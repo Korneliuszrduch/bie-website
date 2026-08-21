@@ -37,6 +37,25 @@
   gap: 0.55rem;
 }
 
+@media (max-width: 767px) {
+  .band {
+    padding: 1.1rem 1rem;
+  }
+
+  .title {
+    font-size: 1.08rem;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .primary,
+  .phone {
+    width: 100%;
+  }
+}
+
 .primary,
 .phone {
   display: inline-flex;

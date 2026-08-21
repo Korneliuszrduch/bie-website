@@ -203,3 +203,13 @@
   height: 1px;
   overflow: hidden;
 }
+
+@media (max-width: 760px) {
+  .card {
+    padding: 1rem 0.95rem 1.1rem;
+  }
+
+  .title {
+    font-size: 1.08rem;
+  }
+}
